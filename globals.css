@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* Design tokens */
+:root {
+  --background: #ffffff;
+  --foreground: #141421;
+
+  --acm-blue: #00b4d8;
+  --acm-purple: #7209b7;
+  --acm-pink: #f72585;
+
+  --border-subtle: rgba(0, 0, 0, 0.05);
+}
+
+/* System dark mode fallback */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --border-subtle: rgba(255, 255, 255, 0.10);
+  }
+}
+
+/* JS-controlled dark mode */
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --border-subtle: rgba(255, 255, 255, 0.10);
+}
+
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    /* If you're really using Montserrat, make sure it's loaded */
+    font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  h1, h2, h3 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+
+  .glass-card {
+    @apply rounded-xl p-6 transition-shadow hover:shadow-md;
+    border: 1px solid var(--border-subtle);
+    background: white;
+  }
+}
