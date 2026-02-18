@@ -13,42 +13,52 @@ const NAV_LINKS = [
   { href: '/about',    label: 'About' },
 ];
 
+const ThemeToggle = ({ isDark, onToggle }) => (
+  <button
+    className={styles.themeToggle}
+    onClick={onToggle}
+    aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 2v2"/>
+      <path d="M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715"/>
+      <path d="M16 12a4 4 0 0 0-4-4"/>
+      <path d="m19 5-1.256 1.256"/>
+      <path d="M20 12h2"/>
+    </svg>
+  </button>
+);
+
 const Navbar = () => {
-  const [isOpen, setIsOpen]   = useState(false);
-  const [isDark, setIsDark]   = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const saved = localStorage.getItem('theme');
+    if (saved) return saved === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
   const close = () => setIsOpen(false);
 
-  // Initialise from localStorage (runs only on client — avoids SSR mismatch)
   useEffect(() => {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      setIsDark(true);
-    }
-  }, []);
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   const toggleTheme = () => {
     const next = !isDark;
     setIsDark(next);
-    document.documentElement.setAttribute('data-theme', next ? 'dark' : 'light');
     localStorage.setItem('theme', next ? 'dark' : 'light');
   };
-
-  const ThemeToggle = () => (
-    <button
-      className={styles.themeToggle}
-      onClick={toggleTheme}
-      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-    >
-      <Image
-        src="/sun-moon.svg"
-        width={22}
-        height={22}
-        alt=""
-        aria-hidden="true"
-      />
-    </button>
-  );
 
   return (
     <header>
@@ -76,7 +86,7 @@ const Navbar = () => {
 
           {/* Desktop: theme toggle + login + hamburger */}
           <div className={styles.actions}>
-            <ThemeToggle />
+            <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
             <a href="/login" className={styles['btn-primary']}>member login</a>
             <button
               className={styles.hamburger}
@@ -107,7 +117,7 @@ const Navbar = () => {
         role="dialog"
       >
         <div className={styles.drawerHeader}>
-          <ThemeToggle />
+          <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
           <button className={styles.closeBtn} onClick={close} aria-label="Close menu">
             ✕
           </button>
@@ -122,7 +132,7 @@ const Navbar = () => {
         </ul>
 
         <a href="/login" className={styles['btn-primary']} onClick={close}>
-          member login
+          membership
         </a>
       </div>
     </header>

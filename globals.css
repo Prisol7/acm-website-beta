@@ -3,7 +3,7 @@
 /* Design tokens */
 :root {
   --background: #ffffff;
-  --foreground: #141421;
+  --foreground: #1F1F1F;
 
   --acm-blue: #00b4d8;
   --acm-purple: #7209b7;
@@ -15,7 +15,7 @@
 /* System dark mode fallback */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --background: #0a0a0a;
+    --background: #1F1F1F;
     --foreground: #ededed;
     --border-subtle: rgba(255, 255, 255, 0.10);
   }
@@ -23,7 +23,7 @@
 
 /* JS-controlled dark mode */
 [data-theme="dark"] {
-  --background: #0a0a0a;
+  --background: #1F1F1F;
   --foreground: #ededed;
   --border-subtle: rgba(255, 255, 255, 0.10);
 }
@@ -49,4 +49,18 @@
     border: 1px solid var(--border-subtle);
     background: white;
   }
+}
+
+
+@media (max-width: 850px) {
+  .hero-right {
+    display: none;
+  }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.blink {
+  animation: blink 0.9s steps(1) infinite;
 }
