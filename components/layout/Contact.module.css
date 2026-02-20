@@ -1,0 +1,102 @@
+.section {
+  display: flex;
+  justify-content: center;
+  padding: 5rem 2rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  max-width: 860px;
+  width: 100%;
+}
+
+.card {
+  flex: 1;
+  border-radius: 1rem;
+  border: 1px solid var(--border-subtle);
+  background: var(--background);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+/* Left — image fills the card */
+.imageCard {
+  min-height: 320px;
+  position: relative;
+}
+
+/* Right — info card */
+.infoCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2.5rem 2rem;
+}
+
+.tagline {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--foreground);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.emailRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.emailLink {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--acm-blue);
+  text-decoration: none;
+}
+
+.emailLink:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 0;
+}
+
+.socialRow {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  color: var(--foreground);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.socialLink:hover {
+  background: var(--acm-blue);
+  border-color: var(--acm-blue);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .imageCard {
+    min-height: 220px;
+  }
+}

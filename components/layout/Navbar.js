@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
 import Image from 'next/image';
 
+
+
 const NAV_LINKS = [
   { href: '/',         label: 'Home' },
   { href: '/board',    label: 'Board' },
@@ -18,6 +20,7 @@ const ThemeToggle = ({ isDark, onToggle }) => (
     className={styles.themeToggle}
     onClick={onToggle}
     aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+    suppressHydrationWarning
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +64,7 @@ const Navbar = () => {
   };
 
   return (
-    <header>
+    <header className={styles.navHeader}>
       <nav className={styles.navbar}>
         <div className={styles.navContainer}>
 
@@ -87,7 +90,7 @@ const Navbar = () => {
           {/* Desktop: theme toggle + login + hamburger */}
           <div className={styles.actions}>
             <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
-            <a href="/login" className={styles['btn-primary']}>member login</a>
+            <a href="/login" className={styles['btn-primary']}>membership</a>
             <button
               className={styles.hamburger}
               onClick={() => setIsOpen(true)}
@@ -131,9 +134,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <a href="/login" className={styles['btn-primary']} onClick={close}>
-          membership
-        </a>
+        <a href="/login" className={styles['btn-primary']} onClick={close}>membership</a>
       </div>
     </header>
   );

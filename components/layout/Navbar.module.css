@@ -1,3 +1,12 @@
+/* ── Fixed header wrapper ── */
+.navHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
 /* ── Base navbar ── */
 .navbar {
   width: 100%;
@@ -5,9 +14,6 @@
   background-color: var(--background);
   display: flex;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
   font-family: 'Inter', sans-serif;
 }
 
