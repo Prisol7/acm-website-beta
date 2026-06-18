@@ -1,0 +1,96 @@
+/* ── Events page ── */
+
+.pageHeading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  margin-bottom: 0.25rem;
+}
+
+.sectionHeading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 2rem;
+}
+
+/* ── Upcoming event ── */
+.upcomingWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.upcomingPoster {
+  position: relative;
+  width: 340px;
+  aspect-ratio: 2 / 3;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: #2a2a2a;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+.featuredBadge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--acm-pink);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+}
+
+.posterPlaceholderText {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+}
+
+/* ── Semester posters grid ── */
+.postersGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.posterCard {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: #2a2a2a;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.posterCard:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 850px) {
+  .postersGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .upcomingPoster {
+    width: 280px;
+  }
+}
+
+@media (max-width: 560px) {
+  .postersGrid {
+    grid-template-columns: 1fr;
+  }
+}

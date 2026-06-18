@@ -13,7 +13,7 @@ export default function JoinUs() {
         className={styles.logo}
       />
 
-      <h2 className={styles.title}>Become a Binary</h2>
+      <h2 className={styles.title}>Become a Byte</h2>
 
       <p className={styles.desc}>
         Join ACM at Cal State LA and plug into a community that builds, learns,
