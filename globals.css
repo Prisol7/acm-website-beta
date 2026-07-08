@@ -9,6 +9,10 @@
   --acm-purple: #7209b7;
   --acm-pink: #f72585;
 
+  --accent: #7209b7;
+  --muted: #6b7280;
+  --surface: #ffffff;
+
   --border-subtle: rgba(0, 0, 0, 0.05);
 }
 
@@ -25,7 +29,18 @@
 [data-theme="dark"] {
   --background: #1F1F1F;
   --foreground: #ededed;
+  --accent: #b57bff;
+  --muted: #9aa0aa;
+  --surface: #262626;
   --border-subtle: rgba(255, 255, 255, 0.10);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #b57bff;
+    --muted: #9aa0aa;
+    --surface: #262626;
+  }
 }
 
 @layer base {

@@ -51,7 +51,7 @@
 }
 
 .navLinks a:hover {
-  color: #000;
+  color: var(--accent, var(--acm-purple));
 }
 
 /* ── Desktop action area ── */
@@ -140,7 +140,7 @@
   display: block;
   width: 25px;
   height: 3px;
-  background-color: #333;
+  background-color: var(--foreground);
   border-radius: 2px;
 }
 
