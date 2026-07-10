@@ -3,8 +3,7 @@ export default function AboutPage() {
     <main className="max-w-3xl mx-auto px-6 py-16">
       <h1 className="text-4xl font-bold mb-4">About Us</h1>
       <p className="text-lg text-gray-600 mb-8">
-        We are the Association for Computing Machinery (ACM) student chapter —
-        a community of students passionate about technology, software, and
+        We are the Association for Computing Machinery (ACM) student chapter, a community of students passionate about technology, software, and
         everything in between.
       </p>
 

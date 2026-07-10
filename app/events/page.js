@@ -1,46 +1,21 @@
-import Image from 'next/image';
-import styles from './page.module.css';
+import EventsClient from './EventsClient';
+import { getUpcomingEvent, getSemesterEvents, getPastEvents } from '@/lib/events';
 
-const SEMESTER_POSTERS = [
-  //get ides from firebase later on
-  //should not need firebase auth to get images from firebase storage
-  {id: 1 },
-  {id: 2 },
-  {id: 3 },
-  {id: 4 },
-  {id: 5 },
-  {id: 6 },
-];
+// Past events are randomly picked, so this page must render per-request, not be cached at build time.
+export const dynamic = 'force-dynamic';
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const [upcomingEvent, semesterEvents, pastEvents] = await Promise.all([
+    getUpcomingEvent(),
+    getSemesterEvents(),
+    getPastEvents(),
+  ]);
+
   return (
-    <main>
-      <div className="Content flex flex-col">
-
-        {/* ── Upcoming Event ── */}
-        <section>
-          <h2 className={styles.sectionHeading}>Upcoming Event</h2>
-          <div className={styles.upcomingWrapper}>
-            <div className={styles.upcomingPoster}>
-              <span className={styles.featuredBadge}>Next Up</span>
-              <Image src="/images/template.png" alt="Upcoming event poster" fill style={{ objectFit: 'cover' }} />
-            </div>
-          </div>
-        </section>
-
-        {/* ── Semester Posters ── */}
-        <section>
-          <h2 className={styles.sectionHeading}>Fall 2026 Events</h2>
-          <div className={styles.postersGrid}>
-            {SEMESTER_POSTERS.map((poster) => (
-              <div key={poster.id} className={styles.posterCard}>
-                <Image src="/images/template.png" alt="Event poster" fill style={{ objectFit: 'cover' }} />
-              </div>
-            ))}
-          </div>
-        </section>
-
-      </div>
-    </main>
+    <EventsClient
+      upcomingEvent={upcomingEvent}
+      semesterEvents={semesterEvents}
+      pastEvents={pastEvents}
+    />
   );
 }

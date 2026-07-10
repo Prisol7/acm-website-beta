@@ -23,7 +23,7 @@ import Contact from '../components/layout/Contact';
 const CARDS = [
   {
     title: 'Projects',
-    desc: 'semester-long workshop to enhance your coding skills through a hands-on project and expert guidance from our ACM leaders.',
+    desc: 'semester long workshop to enhance your coding skills through a hands on project and expert guidance from our ACM leaders.',
     image: 'projects.png',
   },
   {
@@ -33,7 +33,7 @@ const CARDS = [
   },
   {
     title: 'Hackathons',
-    desc: 'Build real projects in fast-paced team environments, tackle ambitious challenges, and ship something in 24–48 hours.',
+    desc: 'Build real projects in fast paced team environments, tackle ambitious challenges, and ship something in 24–48 hours.',
     image: 'hackathon.png',
   },
   {
@@ -48,7 +48,7 @@ const CARDS = [
   },
   {
     title: 'Leadership',
-    desc: 'Join the board and help shape the direction of our club while developing real-world leadership experience.',
+    desc: 'Join the board and help shape the direction of our club while developing real world leadership experience.',
     image: 'leadership.png',
   },
 ];

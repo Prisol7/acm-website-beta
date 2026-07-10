@@ -1,0 +1,358 @@
+/* ── Membership page ── */
+
+/* ── Hero banner ── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  max-height: 380px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  padding: 0 1.5rem;
+}
+
+.heroEyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: color-mix(in srgb, var(--acm-blue) 55%, transparent);
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* ── Intro ── */
+.intro {
+  text-align: center;
+}
+
+.leadText {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--foreground);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.leadText strong {
+  color: var(--accent);
+}
+
+/* ── Benefits grid ── */
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.benefitCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  background: var(--surface);
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.benefitCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+  border-color: var(--accent);
+}
+
+.benefitIcon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.benefitText {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+
+/* ── Spotlight (image + text) section ── */
+.spotlightRow {
+  display: flex;
+  align-items: stretch;
+  gap: 1.25rem;
+}
+
+.spotlight {
+  display: flex;
+  align-items: center;
+  flex: 1 1 65%;
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.25rem;
+  background: var(--surface);
+}
+
+.spotlightImage {
+  position: relative;
+  flex: 0 0 280px;
+  height: 200px;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.spotlightText {
+  flex: 1;
+}
+
+.spotlightTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0 0 0.6rem;
+}
+
+.spotlightBlurb {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ── Mascot card ── */
+.mascotCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 35%;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.25rem;
+  background: var(--surface);
+  text-align: center;
+}
+
+.mascotImage {
+  position: relative;
+  width: 100%;
+  max-width: 220px;
+  height: 200px;
+}
+
+.mascotCaption {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0;
+}
+
+/* ── Steps ── */
+.sectionHeading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.sectionSubheading {
+  font-size: 1rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 0 0 2rem;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.step {
+  position: relative;
+  padding: 1.75rem 1.5rem 1.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.stepNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.stepTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0 0 0.4rem;
+}
+
+.stepText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ── CTA ── */
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border-radius: 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.ctaButton:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* ── Heads up callout ── */
+.callout {
+  border: 1px solid var(--border-subtle);
+  
+  border-radius: 0.9rem;
+  background: var(--surface);
+  padding: 1.75rem 2rem;
+}
+
+.calloutTitle {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--foreground);
+  margin: 0 0 1rem;
+}
+
+.calloutList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.calloutList li {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--foreground);
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.calloutList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  /*background: var(--acm-pink); */
+}
+
+.calloutList a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.calloutList a:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive ── */
+@media (max-width: 850px) {
+  .benefitsGrid,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .spotlightRow {
+    flex-direction: column;
+  }
+
+  .spotlight {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .spotlightImage {
+    width: 100%;
+    flex: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    height: 260px;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+}

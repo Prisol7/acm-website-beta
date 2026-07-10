@@ -51,7 +51,7 @@
 }
 
 .navLinks a:hover {
-  color: var(--accent, var(--acm-purple));
+  color: var(--accent, var(--acm-blue));
 }
 
 /* ── Desktop action area ── */

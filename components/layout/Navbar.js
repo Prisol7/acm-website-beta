@@ -90,7 +90,7 @@ const Navbar = () => {
           {/* Desktop: theme toggle + login + hamburger */}
           <div className={styles.actions}>
             <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
-            <a href="/login" className={styles['btn-primary']}>membership</a>
+            <a href="/membership" className={styles['btn-primary']}>membership</a>
             <button
               className={styles.hamburger}
               onClick={() => setIsOpen(true)}
@@ -134,7 +134,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <a href="/login" className={styles['btn-primary']} onClick={close}>membership</a>
+        <a href="/membership" className={styles['btn-primary']} onClick={close}>membership</a>
       </div>
     </header>
   );
