@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import styles from './page.module.css';
 
@@ -63,7 +64,12 @@ export default function EventsClient({ upcomingEvent, semesterEvents, pastEvents
 
         {/* ── Past Events ── */}
         <section>
-          <h2 className={styles.sectionHeading}>Past Events</h2>
+          <div className={styles.sectionHeadRow}>
+            <h2 className={styles.sectionHeading}>Past Events</h2>
+            <Link href="/events/past" className={styles.viewAllLink}>
+              View all past events →
+            </Link>
+          </div>
           <div className={styles.postersGrid}>
             {pastEvents.map((event) => (
               <div

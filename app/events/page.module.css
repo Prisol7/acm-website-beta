@@ -47,6 +47,43 @@
   margin-bottom: 2rem;
 }
 
+.sectionHeadRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sectionHeadRow .sectionHeading {
+  margin-bottom: 0;
+}
+
+.viewAllLink {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.viewAllLink:hover {
+  text-decoration: underline;
+}
+
+.backLink {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
 /* ── Upcoming event ── */
 .upcomingWrapper {
   display: flex;

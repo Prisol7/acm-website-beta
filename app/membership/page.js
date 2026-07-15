@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from './page.module.css';
 
 // TODO: replace with the real payment/sign-up form link.
-const MEMBERSHIP_SIGNUP_URL = '';
+const MEMBERSHIP_SIGNUP_URL = 'https://buy.stripe.com/aFa5kD6Ewcb9gHT2zx6g800';
 
 const BENEFITS = [
   {

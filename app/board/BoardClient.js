@@ -73,34 +73,23 @@ export default function BoardClient({ sections }) {
       </nav>
 
       <div className="Content flex flex-col">
-        {sections.map(({ id, title, blurb, members }) => (
+        {sections.map(({ id, title, blurb, members, groups }) => (
           <section key={id} id={id} className={styles.section}>
             <div className={styles.sectionHead}>
               <h2 className={styles.sectionTitle}>{title}</h2>
               <p className={styles.sectionBlurb}>{blurb}</p>
             </div>
 
-            <div className={styles.boardGrid}>
-              {members.map(({ role, name, img }) => (
-                <article key={`${role}-${name}`} className={styles.member}>
-                  {img ? (
-                    // External Firestore image URL — host isn't known ahead of time,
-                    // so this skips next/image's remotePatterns requirement.
-                    <img src={img} alt={name} className={styles.memberImg} />
-                  ) : (
-                    <Image
-                      src="/images/basketball-bird.png"
-                      alt={name}
-                      width={90}
-                      height={90}
-                      className={styles.memberImg}
-                    />
-                  )}
-                  <h3 className={styles.memberRole}>{role}</h3>
-                  <p className={styles.memberName}>{name}</p>
-                </article>
-              ))}
-            </div>
+            {groups ? (
+              groups.map(({ key, label, members: groupMembers }) => (
+                <div key={key} className={styles.subGroup}>
+                  <h3 className={styles.subGroupTitle}>{label}</h3>
+                  <MemberGrid members={groupMembers} />
+                </div>
+              ))
+            ) : (
+              <MemberGrid members={members} />
+            )}
           </section>
         ))}
 
@@ -109,5 +98,31 @@ export default function BoardClient({ sections }) {
         </p>
       </div>
     </main>
+  );
+}
+
+function MemberGrid({ members }) {
+  return (
+    <div className={styles.boardGrid}>
+      {members.map(({ role, name, img }) => (
+        <article key={`${role}-${name}`} className={styles.member}>
+          {img ? (
+            // External Firestore image URL — host isn't known ahead of time,
+            // so this skips next/image's remotePatterns requirement.
+            <img src={img} alt={name} className={styles.memberImg} />
+          ) : (
+            <Image
+              src="/images/basketball-bird.png"
+              alt={name}
+              width={90}
+              height={90}
+              className={styles.memberImg}
+            />
+          )}
+          <h3 className={styles.memberRole}>{role}</h3>
+          <p className={styles.memberName}>{name}</p>
+        </article>
+      ))}
+    </div>
   );
 }

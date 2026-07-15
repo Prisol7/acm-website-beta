@@ -23,7 +23,7 @@ export default function JoinUs() {
         Learn the latest tech. Learn to build a game on Godot or make a discord bot.
       </p>
 
-      <Button>Join</Button>
+      <Button href="/membership">Join</Button>
     </div>
   );
 }

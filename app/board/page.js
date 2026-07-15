@@ -24,7 +24,7 @@ export default async function BoardPage() {
       label: 'Committees',
       title: 'Committees',
       blurb: 'Member driven teams focused on events, workshops, and outreach.',
-      members: leaders.committee,
+      groups: leaders.committee,
     },
     {
       id: 'advisors',

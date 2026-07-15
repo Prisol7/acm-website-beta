@@ -9,19 +9,44 @@ const MONTHS = [
   'July', 'August', 'September', 'October', 'November', 'December',
 ];
 
-// Sample events keyed by YYYY-M-D (month is 0-indexed)
-const EVENTS = {
-  '2026-6-3': [{ title: 'General Meeting', color: 'blue' }],
-  '2026-6-10': [{ title: 'Intro to Git Workshop', color: 'purple' }],
-  '2026-6-17': [{ title: 'Hackathon Kickoff', color: 'pink' }],
-  '2026-6-24': [{ title: 'Guest Speaker Night', color: 'blue' }],
+// Event type → legend label + chip color.
+const EVENT_TYPES = {
+  workshop: { label: 'Workshop', color: 'purple' },
+  speaker: { label: 'Speaker', color: 'blue' },
+  special: { label: 'Special Event', color: 'pink' },
 };
 
 const key = (y, m, d) => `${y}-${m}-${d}`;
 
+const EVENT_TIME = '3:00 PM';
+
+function getTuesdays(year, month) {
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const tuesdays = [];
+  for (let d = 1; d <= daysInMonth; d++) {
+    if (new Date(year, month, d).getDay() === 2) tuesdays.push(d);
+  }
+  return tuesdays;
+}
+
 export default function CalendarPage() {
   const today = new Date();
   const [view, setView] = useState({ year: today.getFullYear(), month: today.getMonth() });
+
+  // Full schedule is still TBD — placeholder events just preview the layout
+  // and color-coding, on every Tuesday of this month at 3pm.
+  const EVENTS = useMemo(() => {
+    const y = today.getFullYear();
+    const m = today.getMonth();
+    const types = Object.keys(EVENT_TYPES);
+    return Object.fromEntries(
+      getTuesdays(y, m).map((d, i) => [
+        key(y, m, d),
+        [{ title: 'TBD', type: types[i % types.length], time: EVENT_TIME }],
+      ])
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const cells = useMemo(() => {
     const { year, month } = view;
@@ -130,8 +155,8 @@ export default function CalendarPage() {
                       {evs.map((ev, j) => (
                         <span
                           key={j}
-                          className={`${styles.event} ${styles[ev.color]}`}
-                          title={ev.title}
+                          className={`${styles.event} ${styles[EVENT_TYPES[ev.type].color]}`}
+                          title={`${EVENT_TYPES[ev.type].label} — ${ev.title} @ ${ev.time}`}
                         >
                           {ev.title}
                         </span>
@@ -154,14 +179,14 @@ export default function CalendarPage() {
               {upcoming.map(({ date, evs }) =>
                 evs.map((ev, j) => (
                   <li key={`${date}-${j}`} className={styles.upcomingItem}>
-                    <div className={`${styles.dateChip} ${styles[ev.color]}`}>
+                    <div className={`${styles.dateChip} ${styles[EVENT_TYPES[ev.type].color]}`}>
                       <span className={styles.chipMonth}>{MONTHS[date.getMonth()].slice(0, 3)}</span>
                       <span className={styles.chipDay}>{date.getDate()}</span>
                     </div>
                     <div>
                       <p className={styles.eventTitle}>{ev.title}</p>
                       <p className={styles.eventMeta}>
-                        {WEEKDAYS[date.getDay()]}, {MONTHS[date.getMonth()]} {date.getDate()}
+                        {WEEKDAYS[date.getDay()]}, {MONTHS[date.getMonth()]} {date.getDate()} · {ev.time}
                       </p>
                     </div>
                   </li>
@@ -169,6 +194,16 @@ export default function CalendarPage() {
               )}
             </ul>
           )}
+        </div>
+
+        {/* Legend */}
+        <div className={styles.legend}>
+          {Object.values(EVENT_TYPES).map(({ label, color }) => (
+            <div key={label} className={styles.legendItem}>
+              <span className={`${styles.legendDot} ${styles[color]}`} />
+              <span>{label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </main>

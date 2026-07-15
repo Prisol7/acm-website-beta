@@ -3,21 +3,13 @@ import Typewriter from '../components/ui/typewriter';
 import Carousel from '../components/layout/Carousel';
 import JoinUs from '../components/layout/Join_us';
 import Contact from '../components/layout/Contact';
+import { getCarouselImages } from '../lib/gallery';
 
-  const images = [
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-    "/images/group.jpg",
-  ];
+const FALLBACK_IMAGES = ["/images/group.jpg"];
+
+// Carousel pulls live from Firebase Storage + Firestore, so this must render
+// per-request rather than be cached at build time.
+export const dynamic = 'force-dynamic';
 
 
 const CARDS = [
@@ -53,7 +45,10 @@ const CARDS = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const carouselImages = await getCarouselImages();
+  const images = carouselImages.length > 0 ? carouselImages : FALLBACK_IMAGES;
+
   return (
     <main>
       {/* ── Hero ── */}

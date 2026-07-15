@@ -1,0 +1,149 @@
+/* ── Under construction page ── */
+
+.page {
+  min-height: calc(100vh - 84px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background: var(--background);
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  padding: 3rem 2.5rem 2.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* ── Icon scene ── */
+.scene {
+  position: relative;
+  height: 90px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cone {
+  font-size: 3rem;
+  display: inline-block;
+  animation: coneBounce 2.2s ease-in-out infinite;
+}
+
+.wrench {
+  position: absolute;
+  right: calc(50% - 58px);
+  top: 6px;
+  font-size: 1.6rem;
+  transform-origin: 70% 30%;
+  animation: wrenchWiggle 1.8s ease-in-out infinite;
+}
+
+.bug {
+  position: absolute;
+  bottom: 4px;
+  font-size: 1.35rem;
+  animation: bugCrawl 5s ease-in-out infinite;
+}
+
+.bugOne {
+  left: calc(50% - 90px);
+  animation-duration: 4.5s;
+}
+
+.bugTwo {
+  left: calc(50% + 55px);
+  animation-duration: 6s;
+  animation-delay: -2s;
+}
+
+@keyframes coneBounce {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-8px) rotate(4deg); }
+}
+
+@keyframes wrenchWiggle {
+  0%, 100% { transform: rotate(-18deg); }
+  50% { transform: rotate(14deg); }
+}
+
+@keyframes bugCrawl {
+  0%, 100% { transform: translateX(0) scaleX(1); }
+  45% { transform: translateX(36px) scaleX(1); }
+  50% { transform: translateX(36px) scaleX(-1); }
+  95% { transform: translateX(0) scaleX(-1); }
+}
+
+/* ── Copy ── */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--acm-pink);
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+  color: var(--acm-blue);
+}
+
+.subtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* ── Caution tape divider ── */
+.tapeRow {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 1.75rem;
+}
+
+.tape {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(
+    135deg,
+    #ffca28 0px,
+    #ffca28 12px,
+    #1f1f1f 12px,
+    #1f1f1f 24px
+  );
+  opacity: 0.85;
+}
+
+/* ── CTA ── */
+.cta {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border-radius: 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.cta:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}

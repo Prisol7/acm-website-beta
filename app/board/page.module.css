@@ -101,6 +101,22 @@
   margin: 0;
 }
 
+/* ── Committee sub-groups ── */
+.subGroup {
+  margin-bottom: 2rem;
+}
+
+.subGroup:last-child {
+  margin-bottom: 0;
+}
+
+.subGroupTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
 /* ── Member grid ── */
 .boardGrid {
   display: grid;

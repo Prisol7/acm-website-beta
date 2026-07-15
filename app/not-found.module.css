@@ -1,0 +1,51 @@
+/* ── 404 page ── */
+
+.page {
+  min-height: calc(100vh - 84px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background: var(--background);
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+}
+
+.gifWrapper {
+  border-radius: 0.9rem;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 1.75rem;
+}
+
+.gifWrapper a {
+  color: var(--accent);
+}
+
+.cta {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border-radius: 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.cta:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
