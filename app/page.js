@@ -45,6 +45,17 @@ const CARDS = [
   },
 ];
 
+const VIDEOS = [
+  {
+    title: 'ACM Fall 2026',
+    src: 'https://www.youtube.com/embed/LVGuZwSivsU?si=qB_NAzSuZ2ElW1j7',
+  },
+  {
+    title: 'ACM Fall 2026 Projects',
+    src: 'https://www.youtube.com/embed/3T5pvRSK7dA?si=aNSw3OUa3S-jLvgb',
+  },
+];
+
 export default async function Home() {
   const carouselImages = await getCarouselImages();
   const images = carouselImages.length > 0 ? carouselImages : FALLBACK_IMAGES;
@@ -94,6 +105,23 @@ export default async function Home() {
                 <Image src={`/images/${card.image}`} alt={card.title} width={48} height={48} />
                 <h3>{card.title}</h3>
                 <p>{card.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className='videos-grid'>
+            {VIDEOS.map((video) => (
+              <div key={video.title} className='video-item'>
+                <h3>{video.title}</h3>
+                <div className='video-wrapper'>
+                  <iframe
+                    src={video.src}
+                    title={video.title}
+                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                    referrerPolicy='strict-origin-when-cross-origin'
+                    allowFullScreen
+                  />
+                </div>
               </div>
             ))}
           </div>

@@ -73,23 +73,14 @@ export default function BoardClient({ sections }) {
       </nav>
 
       <div className="Content flex flex-col">
-        {sections.map(({ id, title, blurb, members, groups }) => (
+        {sections.map(({ id, title, blurb, members }) => (
           <section key={id} id={id} className={styles.section}>
             <div className={styles.sectionHead}>
               <h2 className={styles.sectionTitle}>{title}</h2>
               <p className={styles.sectionBlurb}>{blurb}</p>
             </div>
 
-            {groups ? (
-              groups.map(({ key, label, members: groupMembers }) => (
-                <div key={key} className={styles.subGroup}>
-                  <h3 className={styles.subGroupTitle}>{label}</h3>
-                  <MemberGrid members={groupMembers} />
-                </div>
-              ))
-            ) : (
-              <MemberGrid members={members} />
-            )}
+            <MemberGrid members={members} />
           </section>
         ))}
 

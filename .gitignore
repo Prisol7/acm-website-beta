@@ -39,6 +39,9 @@ yarn-error.log*
 # firebase
 .firebase
 
+# local-only files never meant to be served or committed (e.g. calendar exports with PII)
+/private/
+
 # docker (local-only for now)
 Dockerfile
 .dockerignore

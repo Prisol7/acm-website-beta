@@ -6,25 +6,25 @@ export default async function BoardPage() {
 
   const sections = [
     {
-      id: 'board',
-      label: 'Board',
+      id: 'executive',
+      label: 'Executive Board',
       title: 'Executive Board',
       blurb: 'The elected students who lead ACM and keep everything running.',
-      members: leaders.board,
+      members: leaders.executive,
     },
     {
-      id: 'officers',
-      label: 'Officers',
-      title: 'Officers',
-      blurb: 'Officers who support the board and help operations run smoothly.',
-      members: leaders.officers,
+      id: 'project-team',
+      label: 'Project Team',
+      title: 'Project Team',
+      blurb: 'The team behind our project workshops, from planning to execution.',
+      members: leaders.projectTeam,
     },
     {
-      id: 'committees',
-      label: 'Committees',
-      title: 'Committees',
-      blurb: 'Member driven teams focused on events, workshops, and outreach.',
-      groups: leaders.committee,
+      id: 'web-team',
+      label: 'Web Team',
+      title: 'Web Team',
+      blurb: 'The team who builds and maintains everything you see on this site.',
+      members: leaders.webTeam,
     },
     {
       id: 'advisors',

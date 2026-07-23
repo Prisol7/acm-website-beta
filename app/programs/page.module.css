@@ -33,5 +33,64 @@
   font-size: 1rem;
   line-height: 1.7;
   color: var(--muted);
-  margin: 0;
+  margin: 0 0 1.25rem;
+}
+
+.sectionRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.sectionText {
+  flex: 1.2;
+  min-width: 0;
+}
+
+.flyerLink {
+  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.flyerLink:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+}
+
+.flyer {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.learnMore {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.learnMore:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .sectionRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .flyerLink {
+    max-width: 260px;
+    margin: 0 auto;
+  }
 }
