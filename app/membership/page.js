@@ -44,7 +44,7 @@ export default function MembershipPage() {
           <Image src="/images/acm_swe.jpg" alt="" fill style={{ objectFit: 'cover' }} priority />
           <div className={styles.heroOverlay} />
           <div className={styles.heroContent}>
-            <span className={styles.heroEyebrow}>2025 – 2026</span>
+            <span className={styles.heroEyebrow}>2026 – 2027</span>
             <h1 className={styles.heroTitle}>ACM Membership</h1>
             <p className={styles.heroSubtitle}>
               One membership, a full year of workshops, events, and community.

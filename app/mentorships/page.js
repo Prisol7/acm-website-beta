@@ -25,6 +25,30 @@ const LEAD_MENTORS = [
     img: '/mentor_pics/wilson.png',
     linkedin: 'https://www.linkedin.com/in/wilsonthomas01/?skipRedirect=true',
   },
+  {
+    name: 'Virginia Gonzalez',
+    role: 'Software Engineer @ Northrop Grumman',
+    img: '/mentor_pics/virginia.png',
+    linkedin: 'https://www.linkedin.com/in/virginiagonz/',
+  },
+];
+
+const ONE_ON_ONE_MENTORS = [
+  {
+    name: 'Geovanny Huerta',
+    role: 'Software Engineer @ Northrop Grumman',
+    img: '/mentor_pics/Huetra.png',
+    linkedin: 'https://www.linkedin.com/in/geovanny-huerta/',
+  },
+];
+
+const TECHNICAL_INTERVIEWERS = [
+  {
+    name: 'Diego Flores',
+    role: 'Computer Scientist | Infrastructure & Systems @ Naval Information Warfare Center Pacific',
+    img: '/mentor_pics/flores.png',
+    linkedin: 'https://www.linkedin.com/in/dflores13/',
+  },
 ];
 
 const MENTORSHIP_CHAIR = [
@@ -133,6 +157,16 @@ export default function MentorshipsPage() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Lead Mentors</h2>
           <MentorGrid mentors={LEAD_MENTORS} />
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>One on One Mentor</h2>
+          <MentorGrid mentors={ONE_ON_ONE_MENTORS} />
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Technical Interviewer</h2>
+          <MentorGrid mentors={TECHNICAL_INTERVIEWERS} />
         </section>
 
         <section className={styles.section}>

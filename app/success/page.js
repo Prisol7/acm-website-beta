@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import MembershipForm from './MembershipForm';
 import styles from './page.module.css';
 
 const NEXT_STEPS = [
@@ -103,7 +104,8 @@ export default function SuccessPage() {
           <div className={styles.imagePanelOverlay} />
         </div>
       </div>
+
+      <MembershipForm />
     </main>
-    
   );
 }

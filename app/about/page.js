@@ -9,6 +9,19 @@ const TECHS = [
   { name: 'HTML5', img: '/images/html-5.png' },
 ];
 
+const AWARDS = [
+  {
+    title: "CSI's Organization of the Year",
+    subtitle: '2018–2019',
+    img: 'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Forg_of_the_year_acm.png?alt=media&token=8e7a55c3-ef6d-4c23-be07-c1695f04a9a3',
+  },
+  {
+    title: "CSI's Collaboration of the Year",
+    subtitle: 'JPL Trip ACM x SWE · 2025–2026',
+    img: 'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Fcollaborative_award_jpl.jpg?alt=media&token=72ec23a7-aeb1-49dd-8ab2-4fdfd890646e',
+  },
+];
+
 export default function AboutPage() {
   return (
     <main>
@@ -61,6 +74,21 @@ export default function AboutPage() {
               <div key={name} className={styles.techCard}>
                 <Image src={img} alt={name} width={48} height={48} />
                 <span className={styles.techName}>{name}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Awards</h2>
+          <div className={styles.awardGrid}>
+            {AWARDS.map(({ title, subtitle, img }) => (
+              <div key={title} className={styles.awardCard}>
+                <div className={styles.awardImage}>
+                  <Image src={img} alt={title} fill style={{ objectFit: 'cover' }} />
+                </div>
+                <h3 className={styles.awardTitle}>{title}</h3>
+                <p className={styles.awardSubtitle}>{subtitle}</p>
               </div>
             ))}
           </div>
