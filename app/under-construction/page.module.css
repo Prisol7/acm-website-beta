@@ -50,7 +50,9 @@
 .bug {
   position: absolute;
   bottom: 4px;
-  font-size: 1.35rem;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
   animation: bugCrawl 5s ease-in-out infinite;
 }
 
