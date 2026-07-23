@@ -65,7 +65,8 @@ export default async function Home() {
       {/* ── Hero ── */}
       <div className='Hero flex flex-row items-center justify-center gap-8' style={{ height: 'calc(100vh - 84px)' }}>
         <div className='hero-left'>
-          <Image src='/acmlogo1.png' alt='ACM Logo' width={320} height={320} />
+          <Image className='hero-logo-light' src='/acm_blacklogo.png' alt='ACM Logo' width={320} height={320} />
+          <Image className='hero-logo-dark' src='/acmlogo1.png' alt='ACM Logo' width={320} height={320} />
         </div>
         <div className='hero-right text-5xl font-bold'>
           .creates('<Typewriter words={["workers", "designers", "builders", "teams"]} />')

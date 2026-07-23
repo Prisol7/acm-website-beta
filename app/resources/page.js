@@ -306,7 +306,7 @@ export default function ResourcesPage() {
       <div className="Content flex flex-col">
         <div className={styles.hero}>
           <Image
-            src="https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Ftabling.png?alt=media&token=9b2a4a1e-7a54-4878-9dbd-49dabfb2dae3"
+            src="/images/header-background-image.png"
             alt="ACM tabling on campus"
             fill
             priority
@@ -319,7 +319,7 @@ export default function ResourcesPage() {
         <div className={styles.intro}>
           <p className={styles.subtitle}>
             A guide to the scholarships, career tools, tech perks, and support programs available
-            to Cal State LA students — many of which go unused every semester.
+            to Cal State LA students.
           </p>
         </div>
 

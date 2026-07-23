@@ -74,6 +74,27 @@
   }
 }
 
+/* ── Hero logo (theme-aware) ── */
+.hero-logo-dark {
+  display: none;
+}
+
+[data-theme="dark"] .hero-logo-light {
+  display: none;
+}
+[data-theme="dark"] .hero-logo-dark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero-logo-light {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .hero-logo-dark {
+    display: block;
+  }
+}
+
 /* ── Content wrapper ── */
 .Content {
   max-width: 1100px;

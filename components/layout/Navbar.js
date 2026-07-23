@@ -71,7 +71,7 @@ const Navbar = () => {
           {/* Logo */}
           <a href="/" className={styles.logo}>
             <Image
-              src="/acmlogo1.png"
+              src="/logo-circle.png"
               width={120}
               height={48}
               alt="ACM Logo"
