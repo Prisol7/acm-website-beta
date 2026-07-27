@@ -5,20 +5,36 @@ import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import styles from './page.module.css';
 
-const SCHOOL_YEARS = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student', 'Other'];
+const CLASS_STANDINGS = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student', 'Other'];
+const GENDERS = ['Male', 'Female', 'Non-binary', 'Prefer not to say', 'Other'];
+const HEAR_ABOUT_OPTIONS = [
+  'Instagram',
+  'Discord',
+  'Friend / Classmate',
+  'Professor / Class announcement',
+  'Tabling / Event on campus',
+  'General meeting',
+  'Other',
+];
 
 const EMPTY_FORM = {
+  email: '',
+  membership: '',
   firstName: '',
   lastName: '',
-  schoolEmail: '',
   cin: '',
-  schoolYear: '',
-  membershipStatus: '',
   phone: '',
+  discordId: '',
   birthday: '',
+  gender: '',
   major: '',
-  minor: '',
+  classStanding: '',
+  seniorDesign: '',
+  expectedGraduation: '',
   howHeard: '',
+  howHeardOther: '',
+  careerExpectation: '',
+  projectRecommendations: '',
 };
 
 export default function MembershipForm() {
@@ -34,8 +50,15 @@ export default function MembershipForm() {
     e.preventDefault();
     setStatus('submitting');
     try {
+      const howHeard = form.howHeard === 'Other' && form.howHeardOther
+        ? form.howHeardOther
+        : form.howHeard;
+
+      const { howHeardOther, ...rest } = form;
+
       await addDoc(collection(db, 'member_signups'), {
-        ...form,
+        ...rest,
+        howHeard,
         createdAt: serverTimestamp(),
       });
       setForm(EMPTY_FORM);
@@ -67,69 +90,140 @@ export default function MembershipForm() {
         </p>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.formRow}>
-            <Field label="First name" name="firstName" value={form.firstName} onChange={handleChange} required />
-            <Field label="Last name" name="lastName" value={form.lastName} onChange={handleChange} required />
-          </div>
 
-          <div className={styles.formRow}>
-            <Field label="School email" name="schoolEmail" type="email" value={form.schoolEmail} onChange={handleChange} required />
-            <Field label="CIN" name="cin" value={form.cin} onChange={handleChange} required />
-          </div>
-
-          <div className={styles.formRow}>
-            <SelectField
-              label="School year"
-              name="schoolYear"
-              value={form.schoolYear}
-              onChange={handleChange}
-              options={SCHOOL_YEARS}
-              required
-            />
-            <div className={styles.field}>
-              <span className={styles.fieldLabel}>Membership</span>
-              <div className={styles.radioRow}>
-                <label className={styles.radioLabel}>
-                  <input
-                    type="radio"
-                    name="membershipStatus"
-                    value="New"
-                    checked={form.membershipStatus === 'New'}
-                    onChange={handleChange}
-                    required
-                  />
-                  New member
-                </label>
-                <label className={styles.radioLabel}>
-                  <input
-                    type="radio"
-                    name="membershipStatus"
-                    value="Returning"
-                    checked={form.membershipStatus === 'Returning'}
-                    onChange={handleChange}
-                  />
-                  Returning member
-                </label>
+          {/* ── Contact info ── */}
+          <FormSection title="Contact info">
+            <div className={styles.formRow}>
+              <Field label="Email" name="email" type="email" value={form.email} onChange={handleChange} required />
+              <Field label="Phone number" name="phone" type="tel" value={form.phone} onChange={handleChange} required />
+            </div>
+            <div className={styles.formRow}>
+              <Field label="Discord ID" name="discordId" value={form.discordId} onChange={handleChange} placeholder="username" />
+              <div className={styles.field}>
+                <span className={styles.fieldLabel}>Membership</span>
+                <div className={styles.radioRow}>
+                  <label className={styles.radioLabel}>
+                    <input
+                      type="radio"
+                      name="membership"
+                      value="New"
+                      checked={form.membership === 'New'}
+                      onChange={handleChange}
+                      required
+                    />
+                    New member
+                  </label>
+                  <label className={styles.radioLabel}>
+                    <input
+                      type="radio"
+                      name="membership"
+                      value="Returning"
+                      checked={form.membership === 'Returning'}
+                      onChange={handleChange}
+                    />
+                    Returning member
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
+          </FormSection>
 
-          <div className={styles.formRow}>
-            <Field label="Phone number" name="phone" type="tel" value={form.phone} onChange={handleChange} required />
-            <Field label="Birthday" name="birthday" type="date" value={form.birthday} onChange={handleChange} required />
-          </div>
+          {/* ── About you ── */}
+          <FormSection title="About you">
+            <div className={styles.formRow}>
+              <Field label="First name" name="firstName" value={form.firstName} onChange={handleChange} required />
+              <Field label="Last name" name="lastName" value={form.lastName} onChange={handleChange} required />
+            </div>
+            <div className={styles.formRow}>
+              <Field label="Birthday" name="birthday" type="date" value={form.birthday} onChange={handleChange} required />
+              <SelectField label="Gender" name="gender" value={form.gender} onChange={handleChange} options={GENDERS} />
+            </div>
+            <Field label="CIN" name="cin" value={form.cin} onChange={handleChange} placeholder="N/A if none" required />
+          </FormSection>
 
-          <div className={styles.formRow}>
-            <Field label="Major" name="major" value={form.major} onChange={handleChange} required />
-            <Field label="Minor (if applicable)" name="minor" value={form.minor} onChange={handleChange} />
-          </div>
+          {/* ── Academics ── */}
+          <FormSection title="Academics">
+            <div className={styles.formRow}>
+              <Field label="Major" name="major" value={form.major} onChange={handleChange} required />
+              <SelectField
+                label="Class standing"
+                name="classStanding"
+                value={form.classStanding}
+                onChange={handleChange}
+                options={CLASS_STANDINGS}
+                required
+              />
+            </div>
+            <div className={styles.formRow}>
+              <div className={styles.field}>
+                <span className={styles.fieldLabel}>Senior design?</span>
+                <div className={styles.radioRow}>
+                  <label className={styles.radioLabel}>
+                    <input
+                      type="radio"
+                      name="seniorDesign"
+                      value="Yes"
+                      checked={form.seniorDesign === 'Yes'}
+                      onChange={handleChange}
+                      required
+                    />
+                    Yes
+                  </label>
+                  <label className={styles.radioLabel}>
+                    <input
+                      type="radio"
+                      name="seniorDesign"
+                      value="No"
+                      checked={form.seniorDesign === 'No'}
+                      onChange={handleChange}
+                    />
+                    No
+                  </label>
+                </div>
+              </div>
+              <Field
+                label="Expected graduation date"
+                name="expectedGraduation"
+                type="month"
+                value={form.expectedGraduation}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </FormSection>
 
-          <Field
-            label="How'd you hear about us?"
-            name="howHeard"
-            value={form.howHeard}
-            onChange={handleChange}
-          />
+          {/* ── Tell us more ── */}
+          <FormSection title="Tell us more">
+            <div className={styles.formRow}>
+              <SelectField
+                label="How did you hear about ACM?"
+                name="howHeard"
+                value={form.howHeard}
+                onChange={handleChange}
+                options={HEAR_ABOUT_OPTIONS}
+              />
+              {form.howHeard === 'Other' && (
+                <Field
+                  label="Tell us where"
+                  name="howHeardOther"
+                  value={form.howHeardOther}
+                  onChange={handleChange}
+                />
+              )}
+            </div>
+            <TextAreaField
+              label="What are you hoping to get out of ACM? (career expectations)"
+              name="careerExpectation"
+              value={form.careerExpectation}
+              onChange={handleChange}
+            />
+            <TextAreaField
+              label="Any project ideas or recommendations you'd like to see us cover?"
+              name="projectRecommendations"
+              value={form.projectRecommendations}
+              onChange={handleChange}
+            />
+          </FormSection>
 
           {status === 'error' && (
             <p className={styles.formError}>
@@ -146,7 +240,16 @@ export default function MembershipForm() {
   );
 }
 
-function Field({ label, name, type = 'text', value, onChange, required }) {
+function FormSection({ title, children }) {
+  return (
+    <fieldset className={styles.formFieldset}>
+      <legend className={styles.formSectionTitle}>{title}</legend>
+      <div className={styles.formSectionBody}>{children}</div>
+    </fieldset>
+  );
+}
+
+function Field({ label, name, type = 'text', value, onChange, required, placeholder }) {
   return (
     <label className={styles.field}>
       <span className={styles.fieldLabel}>{label}</span>
@@ -157,6 +260,23 @@ function Field({ label, name, type = 'text', value, onChange, required }) {
         value={value}
         onChange={onChange}
         required={required}
+        placeholder={placeholder}
+      />
+    </label>
+  );
+}
+
+function TextAreaField({ label, name, value, onChange, required }) {
+  return (
+    <label className={styles.field}>
+      <span className={styles.fieldLabel}>{label}</span>
+      <textarea
+        className={styles.fieldTextarea}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        rows={3}
       />
     </label>
   );

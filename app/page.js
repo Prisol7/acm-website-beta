@@ -1,11 +1,16 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Typewriter from '../components/ui/typewriter';
 import Carousel from '../components/layout/Carousel';
 import JoinUs from '../components/layout/Join_us';
 import Contact from '../components/layout/Contact';
 import { getCarouselImages } from '../lib/gallery';
+import { getUpcomingEvent, getSemesterEvents } from '../lib/events';
 
 const FALLBACK_IMAGES = ["/images/group.jpg"];
+
+const MENTORSHIP_FLYER_URL =
+  'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/Fall%202026%2Fmentorship.png?alt=media&token=6f9913c6-4c71-4b3c-a930-730e9cf07a31';
 
 // Carousel pulls live from Firebase Storage + Firestore, so this must render
 // per-request rather than be cached at build time.
@@ -57,8 +62,13 @@ const VIDEOS = [
 ];
 
 export default async function Home() {
-  const carouselImages = await getCarouselImages();
+  const [carouselImages, upcomingEvent, semesterEvents] = await Promise.all([
+    getCarouselImages(),
+    getUpcomingEvent(),
+    getSemesterEvents(),
+  ]);
   const images = carouselImages.length > 0 ? carouselImages : FALLBACK_IMAGES;
+  const featuredSemesterEvents = semesterEvents.slice(0, 3);
 
   return (
     <main>
@@ -128,6 +138,63 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* Mentorship program */}
+        <section className='mentorship-section'>
+          <div className='mentorship-flyer'>
+            <Image
+              src={MENTORSHIP_FLYER_URL}
+              alt='Mentorship program flyer'
+              width={860}
+              height={1080}
+            />
+          </div>
+          <div className='mentorship-text'>
+            <h2>Mentorship Program</h2>
+            <p>
+              Get paired with ACM alumni working across the industry for resume reviews, mock
+              interviews, and real career guidance. It&apos;s a semester-long program open to
+              members at every level — freshman through senior.
+            </p>
+            <Link href='/mentorships' className='mentorship-cta'>
+              Learn more about mentorship →
+            </Link>
+          </div>
+        </section>
+
+        {/* Upcoming & semester events */}
+        {(upcomingEvent || featuredSemesterEvents.length > 0) && (
+          <section className='events-section'>
+            <div className='events-intro'>
+              <span className='events-tagline'>Come join us in our Fall 2026 events</span>
+              <h2>Upcoming &amp; semester events</h2>
+              <p>
+                Workshops, socials, and general meetings all semester long — here&apos;s a taste of
+                what&apos;s coming up.
+              </p>
+            </div>
+
+            <div className='events-grid'>
+              {upcomingEvent && (
+                <div className='event-card event-card-featured'>
+                  <span className='event-badge'>Next Up</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={upcomingEvent.imgUrl} alt={upcomingEvent.altText} />
+                </div>
+              )}
+              {featuredSemesterEvents.map((event) => (
+                <div key={event.id} className='event-card'>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={event.imgUrl} alt={event.altText} />
+                </div>
+              ))}
+            </div>
+
+            <Link href='/events' className='events-cta'>
+              See all events →
+            </Link>
+          </section>
+        )}
+
       </div>
 
       <section className='gallery'>
@@ -153,6 +220,19 @@ export default async function Home() {
           <JoinUs />
         </div>
       </section>
+
+      <section className='resources-section'>
+        <div className='resources-card'>
+          <div className='resources-card-text'>
+            <h3>Need a hand outside of ACM?</h3>
+            <p>Scholarships, tutoring, career tools, and campus support — all in one place.</p>
+          </div>
+          <Link href='/resources' className='resources-cta'>
+            Browse resources →
+          </Link>
+        </div>
+      </section>
+
       <Contact />
 
 

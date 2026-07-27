@@ -339,3 +339,240 @@
     top: 110%;
   }
 }
+
+/* ── Mentorship program ── */
+.mentorship-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4rem;
+}
+
+.mentorship-flyer {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+}
+
+.mentorship-flyer img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mentorship-text {
+  flex: 1;
+}
+
+.mentorship-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.mentorship-text p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--foreground);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.mentorship-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.75rem;
+  background: var(--acm-purple);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.mentorship-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 850px) {
+  .mentorship-section {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ── Upcoming & semester events ── */
+.events-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.events-intro {
+  max-width: 640px;
+}
+
+.events-tagline {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acm-blue);
+  margin-bottom: 0.75rem;
+}
+
+.events-intro h2 {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+
+.events-intro p {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--foreground);
+  opacity: 0.75;
+  margin: 0;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.event-card {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  aspect-ratio: 4 / 5;
+}
+
+.event-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.event-card-featured {
+  grid-column: span 1;
+}
+
+.event-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--acm-blue);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  z-index: 1;
+}
+
+.events-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 2rem;
+  border-radius: 0.75rem;
+  background: var(--acm-blue);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.events-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 850px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Resources CTA ── */
+.resources-section {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem 5rem;
+}
+
+.resources-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  padding: 2.25rem 2.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-subtle);
+  background: var(--background);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
+
+.resources-card-text h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0 0 0.4rem;
+}
+
+.resources-card-text p {
+  font-size: 0.95rem;
+  color: var(--foreground);
+  opacity: 0.75;
+  margin: 0;
+}
+
+.resources-cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.75rem;
+  background: var(--acm-purple);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.resources-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+  .resources-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+}

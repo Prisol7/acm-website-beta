@@ -21,6 +21,8 @@ const NEXT_STEPS = [
 export default function SuccessPage() {
   return (
     <main className={styles.page}>
+      <MembershipForm />
+
       {/* ── Mobile hero image ── */}
       <div className={styles.mobileHero}>
         <Image
@@ -104,8 +106,6 @@ export default function SuccessPage() {
           <div className={styles.imagePanelOverlay} />
         </div>
       </div>
-
-      <MembershipForm />
     </main>
   );
 }
