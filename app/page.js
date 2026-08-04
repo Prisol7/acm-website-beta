@@ -5,12 +5,15 @@ import Carousel from '../components/layout/Carousel';
 import JoinUs from '../components/layout/Join_us';
 import Contact from '../components/layout/Contact';
 import { getCarouselImages } from '../lib/gallery';
-import { getUpcomingEvent, getSemesterEvents } from '../lib/events';
+import { getUpcomingEvent, getProjectEvents } from '../lib/events';
 
 const FALLBACK_IMAGES = ["/images/group.jpg"];
 
 const MENTORSHIP_FLYER_URL =
   'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/Fall%202026%2Fmentorship.png?alt=media&token=6f9913c6-4c71-4b3c-a930-730e9cf07a31';
+
+const INTEREST_FORM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdE8qdvwrX6eIQGylEWVFalwkasWyc9nOJR2Jp_KsiZCKbijA/viewform?pli=1';
 
 // Carousel pulls live from Firebase Storage + Firestore, so this must render
 // per-request rather than be cached at build time.
@@ -62,13 +65,13 @@ const VIDEOS = [
 ];
 
 export default async function Home() {
-  const [carouselImages, upcomingEvent, semesterEvents] = await Promise.all([
+  const [carouselImages, upcomingEvent, projectEvents] = await Promise.all([
     getCarouselImages(),
     getUpcomingEvent(),
-    getSemesterEvents(),
+    getProjectEvents(),
   ]);
   const images = carouselImages.length > 0 ? carouselImages : FALLBACK_IMAGES;
-  const featuredSemesterEvents = semesterEvents.slice(0, 3);
+  const featuredSemesterEvents = projectEvents.slice(0, 2);
 
   return (
     <main>
@@ -196,6 +199,18 @@ export default async function Home() {
         )}
 
       </div>
+
+      <section className='resources-section'>
+        <div className='resources-card'>
+          <div className='resources-card-text'>
+            <h3>Want in on a Workshop?</h3>
+            <p>Fill out our quick registration interest form and we&apos;ll reach out with next steps.</p>
+          </div>
+          <a href={INTEREST_FORM_URL} target='_blank' rel='noopener noreferrer' className='resources-cta accent-blue'>
+            Fill out the form →
+          </a>
+        </div>
+      </section>
 
       <section className='gallery'>
         <Carousel images={images} />

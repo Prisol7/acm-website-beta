@@ -44,7 +44,7 @@ export default function MembershipPage() {
           <Image src="/images/acm_swe.jpg" alt="" fill style={{ objectFit: 'cover' }} priority />
           <div className={styles.heroOverlay} />
           <div className={styles.heroContent}>
-            <span className={styles.heroEyebrow}>2026 – 2027</span>
+            <span className={styles.heroEyebrow}>Valid Fall 2026 – Spring 2027</span>
             <h1 className={styles.heroTitle}>ACM Membership</h1>
             <p className={styles.heroSubtitle}>
               One membership, a full year of workshops, events, and community.
@@ -56,6 +56,10 @@ export default function MembershipPage() {
         <div className={styles.intro}>
           <p className={styles.leadText}>
             When you join ACM, you get all of these benefits for the <strong>whole school year</strong>:
+          </p>
+          <p className={styles.validityNotice}>
+            This membership is valid for the <strong>Fall 2026</strong> and <strong>Spring 2027</strong> semesters
+            only, and does not carry over into future school years.
           </p>
         </div>
 
@@ -133,7 +137,7 @@ export default function MembershipPage() {
               Send us an email if you have any questions or concerns:{' '}
               <a href="mailto:acm.calstatela@gmail.com">acm.calstatela@gmail.com</a>
             </li>
-            <li>ACM memberships are good for one school year (Fall 2026 – Spring 2027).</li>
+            <li><strong>ACM memberships are only valid for Fall 2026 and Spring 2027</strong> and must be renewed for future school years.</li>
           </ul>
         </div>
 

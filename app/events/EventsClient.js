@@ -22,7 +22,7 @@ export default function EventsClient({ upcomingEvent, semesterEvents, pastEvents
 
         {/* ── Hero banner ── */}
         <div className={styles.banner}>
-          <Image src="/images/group.jpg" alt="ACM group" fill style={{ objectFit: 'cover' }} />
+          <Image src="/images/group.jpg" alt="ACM group" fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} />
         </div>
 
         <div className={styles.intro}>

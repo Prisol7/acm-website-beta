@@ -1,14 +1,22 @@
-import { getLeaders } from '@/lib/board';
+import { getLeaders, getBoardYears, DEFAULT_BOARD_DOC_ID } from '@/lib/board';
 import BoardClient from './BoardClient';
 
-export default async function BoardPage() {
-  const leaders = await getLeaders();
+export default async function BoardPage({ searchParams }) {
+  const params = await searchParams;
+  const boardId = params?.board || DEFAULT_BOARD_DOC_ID;
+
+  const [leaders, years] = await Promise.all([
+    getLeaders(boardId),
+    getBoardYears(),
+  ]);
+
+  const currentYear = years.find((y) => y.id === boardId);
 
   const sections = [
     {
       id: 'executive',
-      label: 'Executive Board',
-      title: 'Executive Board',
+      label: 'ACM Board',
+      title: 'ACM Board',
       blurb: 'The elected students who lead ACM and keep everything running.',
       members: leaders.executive,
     },
@@ -35,5 +43,12 @@ export default async function BoardPage() {
     },
   ];
 
-  return <BoardClient sections={sections} />;
+  return (
+    <BoardClient
+      sections={sections}
+      years={years}
+      currentBoardId={boardId}
+      currentSchoolyear={currentYear?.schoolyear}
+    />
+  );
 }

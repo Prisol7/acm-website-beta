@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { href: '/calendar', label: 'Calendar' },
   { href: '/events',   label: 'Events' },
   { href: '/programs', label: 'Programs' },
+  { href: '/mentorships', label: 'Mentorship' },
   { href: '/about',    label: 'About' },
 ];
 

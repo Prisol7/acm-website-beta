@@ -124,7 +124,7 @@ export default function MentorshipsPage() {
                 This program will teach you about how to get internships/full time positions, getting
                 prepared for conferences, how interviews work, and much more! The sessions will be
                 taught by our very own alumni that have years of experience in the field, led by
-                industry professionals who are CSULA and ACM alumni.
+                industry professionals who are California State University Los Angeles and ACM alumni.
               </p>
               <ul className={styles.list}>
                 {TOPICS.map((topic) => (

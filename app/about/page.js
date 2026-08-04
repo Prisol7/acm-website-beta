@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import styles from './page.module.css';
 
 const TECHS = [
@@ -23,6 +26,8 @@ const AWARDS = [
 ];
 
 export default function AboutPage() {
+  const [activeAward, setActiveAward] = useState(null);
+
   return (
     <main>
       <div className="Content flex flex-col">
@@ -82,16 +87,41 @@ export default function AboutPage() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Awards</h2>
           <div className={styles.awardGrid}>
-            {AWARDS.map(({ title, subtitle, img }) => (
-              <div key={title} className={styles.awardCard}>
+            {AWARDS.map((award) => (
+              <div
+                key={award.title}
+                className={styles.awardCard}
+                onClick={() => setActiveAward(award)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') setActiveAward(award);
+                }}
+              >
                 <div className={styles.awardImage}>
-                  <Image src={img} alt={title} fill style={{ objectFit: 'cover' }} />
+                  <Image src={award.img} alt={award.title} fill style={{ objectFit: 'cover' }} />
                 </div>
-                <h3 className={styles.awardTitle}>{title}</h3>
-                <p className={styles.awardSubtitle}>{subtitle}</p>
+                <h3 className={styles.awardTitle}>{award.title}</h3>
+                <p className={styles.awardSubtitle}>{award.subtitle}</p>
               </div>
             ))}
           </div>
+        </section>
+
+        <section className={styles.ctaSection}>
+          <h2 className={styles.sectionTitle}>Chapter Constitution</h2>
+          <p className={styles.sectionBlurb}>
+            Curious how our chapter is structured and governed? Read the official ACM Cal State LA
+            constitution and bylaws.
+          </p>
+          <a
+            href="/2026-2027%20Constitution_Bylaws.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.cta}
+          >
+            View Constitution &amp; Bylaws (PDF)
+          </a>
         </section>
 
         <section className={styles.ctaSection}>
@@ -106,6 +136,29 @@ export default function AboutPage() {
         </section>
 
       </div>
+
+      {/* ── Award lightbox ── */}
+      {activeAward && (
+        <div
+          className={styles.lightboxOverlay}
+          onClick={() => setActiveAward(null)}
+        >
+          <button
+            className={styles.lightboxClose}
+            onClick={() => setActiveAward(null)}
+            aria-label="Close"
+          >
+            &times;
+          </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={activeAward.img}
+            alt={activeAward.title}
+            className={styles.lightboxImage}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </main>
   );
 }

@@ -1,12 +1,43 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState, useTransition } from 'react';
 import styles from './page.module.css';
 
-export default function BoardClient({ sections }) {
+export default function BoardClient({ sections, years = [], currentBoardId, currentSchoolyear }) {
   const [active, setActive] = useState(sections[0]?.id);
   const observerRef = useRef(null);
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [yearMenuOpen, setYearMenuOpen] = useState(false);
+  const yearMenuRef = useRef(null);
+
+  useEffect(() => {
+    if (!yearMenuOpen) return;
+    const onClickOutside = (e) => {
+      if (yearMenuRef.current && !yearMenuRef.current.contains(e.target)) {
+        setYearMenuOpen(false);
+      }
+    };
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setYearMenuOpen(false);
+    };
+    document.addEventListener('mousedown', onClickOutside);
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', onClickOutside);
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [yearMenuOpen]);
+
+  const selectYear = (id) => {
+    setYearMenuOpen(false);
+    if (id === currentBoardId) return;
+    startTransition(() => {
+      router.push(`/board?board=${encodeURIComponent(id)}`, { scroll: false });
+    });
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,7 +82,7 @@ export default function BoardClient({ sections }) {
         <div className={styles.intro}>
           <h1 className={styles.heading}>Meet the Team</h1>
           <p className={styles.muted}>
-            The people who make ACM happen — from the executive board to committees and faculty advisors.
+            The people who make ACM happen — from the ACM Board to committees and faculty advisors.
           </p>
         </div>
       </div>
@@ -59,16 +90,52 @@ export default function BoardClient({ sections }) {
       {/* ── Sticky in-page nav ── */}
       <nav className={styles.sectionNav} aria-label="Jump to section">
         <div className={styles.sectionNavInner}>
-          {sections.map(({ id, label }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              onClick={(e) => handleJump(e, id)}
-              className={`${styles.pill} ${active === id ? styles.pillActive : ''}`}
-            >
-              {label}
-            </a>
-          ))}
+          <div className={styles.sectionNavPills}>
+            {sections.map(({ id, label }) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                onClick={(e) => handleJump(e, id)}
+                className={`${styles.pill} ${active === id ? styles.pillActive : ''}`}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+
+          {years.length > 0 && (
+            <div className={styles.yearPicker} ref={yearMenuRef}>
+              <button
+                type="button"
+                className={styles.yearPickerButton}
+                onClick={() => setYearMenuOpen((open) => !open)}
+                aria-haspopup="listbox"
+                aria-expanded={yearMenuOpen}
+                disabled={isPending}
+              >
+                {isPending ? 'Loading…' : currentSchoolyear || 'Select year'}
+                <span className={styles.yearPickerChevron} aria-hidden="true">▾</span>
+              </button>
+
+              {yearMenuOpen && (
+                <ul className={styles.yearMenu} role="listbox">
+                  {years.map(({ id, schoolyear }) => (
+                    <li key={id}>
+                      <button
+                        type="button"
+                        role="option"
+                        aria-selected={id === currentBoardId}
+                        className={`${styles.yearMenuItem} ${id === currentBoardId ? styles.yearMenuItemActive : ''}`}
+                        onClick={() => selectYear(id)}
+                      >
+                        {schoolyear}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
         </div>
       </nav>
 

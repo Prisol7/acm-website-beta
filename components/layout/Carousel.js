@@ -9,7 +9,7 @@ const SPEED_PX_PER_SEC = 45;
 
 export default function Carousel({ images = [] }) {
   const sectionWidth = useMemo(
-    () => (FRAME_WIDTH * ITEMS_PER_SECTION) / 2, // 680 based on your layout
+    () => (FRAME_WIDTH * ITEMS_PER_SECTION) / 2, // 2 frames per row
     []
   );
 

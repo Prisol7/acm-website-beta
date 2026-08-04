@@ -4,6 +4,9 @@ import styles from './page.module.css';
 
 const VIDEO_URL = 'https://www.youtube.com/embed/3T5pvRSK7dA?si=aNSw3OUa3S-jLvgb';
 
+const INTEREST_FORM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdE8qdvwrX6eIQGylEWVFalwkasWyc9nOJR2Jp_KsiZCKbijA/viewform?pli=1';
+
 const PAST_PROJECTS = [
   {
     alt: 'Spring 2026 Project Workshop',
@@ -47,6 +50,18 @@ export default async function ProjectsPage() {
             starting from, there&apos;s a project built for you.
           </p>
         </div>
+
+        <section className="resources-section" style={{ padding: 0 }}>
+          <div className="resources-card">
+            <div className="resources-card-text">
+              <h3>Ready to sign up?</h3>
+              <p>Fill out our registration interest form to let us know you want in on a project or workshop.</p>
+            </div>
+            <a href={INTEREST_FORM_URL} target="_blank" rel="noopener noreferrer" className="resources-cta accent-blue">
+              Fill out the form →
+            </a>
+          </div>
+        </section>
 
         <section className={styles.section}>
           <div style={{ maxWidth: 640, margin: '0 auto' }}>
