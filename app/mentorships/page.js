@@ -6,49 +6,76 @@ const FLYER_URL =
 const CLASSROOM_IMAGE_URL =
   'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Fclassroom-background.jpg?alt=media&token=9d645135-e7aa-47a6-838e-1ab5e6402421';
 
+const SCHEDULE = [
+  {
+    day: 'Saturdays',
+    time: '10:00 AM – 11:20 AM',
+    mentors: 'David Tang & Virginia Gonzalez',
+  },
+  {
+    day: 'Thursdays',
+    time: '3:00 PM – 4:20 PM',
+    mentors: 'Srivats Venkataraman & Wilson Thomas',
+  },
+];
+
 const LEAD_MENTORS = [
   {
-    name: 'Srivats Venkataraman',
-    role: 'Guidewire Developer @ Farmers Insurance',
-    img: '/mentor_pics/venkataraman.png',
-    linkedin: 'https://www.linkedin.com/in/srivatsvenk/',
-  },
-  {
     name: 'David Tang',
-    role: 'Software Engineer @ Raytheon',
+    role: '(CS Class of 2021) Software Engineer @ Raytheon',
+    tag: 'Every Saturday',
     img: '/mentor_pics/tang.png',
-    linkedin: 'https://www.linkedin.com/in/david-t-tang/',
-  },
-  {
-    name: 'Wilson Thomas',
-    role: 'Business Analyst II @ Travis County',
-    img: '/mentor_pics/wilson.png',
-    linkedin: 'https://www.linkedin.com/in/wilsonthomas01/?skipRedirect=true',
   },
   {
     name: 'Virginia Gonzalez',
-    role: 'Software Engineer @ Northrop Grumman',
+    role: '(CS Class of 2024) Software Engineer @ Northrop Grumman',
+    tag: 'Every Saturday',
     img: '/mentor_pics/virginia.png',
-    linkedin: 'https://www.linkedin.com/in/virginiagonz/',
+  },
+  {
+    name: 'Srivats Venkataraman',
+    role: '(CS Class of 2022) Jr. Guidewire Developer @ Farmers Insurance',
+    tag: 'Every Thursday',
+    img: '/mentor_pics/venkataraman.png',
+  },
+  {
+    name: 'Wilson Thomas',
+    role: '(CS Class of 2019) Business Analyst @ Travis County',
+    tag: 'Every Thursday • Finances',
+    img: '/mentor_pics/wilson.png',
   },
 ];
 
 const ONE_ON_ONE_MENTORS = [
   {
+    name: 'Virginia Gonzalez',
+    role: '(CS Class of 2024) Software Engineer @ Northrop Grumman',
+    img: '/mentor_pics/virginia.png',
+  },
+  {
     name: 'Geovanny Huerta',
-    role: 'Software Engineer @ Northrop Grumman',
+    role: '(CS Class of 2022) Software Engineer @ Northrop Grumman',
     img: '/mentor_pics/Huetra.png',
-    linkedin: 'https://www.linkedin.com/in/geovanny-huerta/',
+  },
+  {
+    name: 'Andrew Gonzalez',
+    role: '(CS Class of 2021) Software Engineer @ Raytheon Intelligence & Space',
+    img: '/mentor_pics/andrew.png',
   },
 ];
 
 const TECHNICAL_INTERVIEWERS = [
   {
     name: 'Diego Flores',
-    role: 'Computer Scientist | Infrastructure & Systems @ Naval Information Warfare Center Pacific',
+    role: '(CS Class of 2023) Scientist @ Naval Information Warfare Center Pacific (NIWC PAC)',
     img: '/mentor_pics/flores.png',
-    linkedin: 'https://www.linkedin.com/in/dflores13/',
   },
+  // TODO: uncomment once we have his photo
+  // {
+  //   name: 'Allen Marques',
+  //   role: '(CS Class of 2022) Systems Modeling & Simulation Engineer @ Northrop Grumman',
+  //   img: '/mentor_pics/allen.png',
+  // },
 ];
 
 const MENTORSHIP_CHAIR = [
@@ -56,22 +83,39 @@ const MENTORSHIP_CHAIR = [
     name: 'Charlie Kaing',
     role: 'Cal State LA Student - ACM Mentorship Chair',
     img: '/mentor_pics/charlie.png',
-    linkedin: 'https://www.linkedin.com/in/charlie-kaing-a5468b2a9/',
   },
 ];
 
 const GUEST_SPEAKERS = [
   {
     name: 'Cristian Corrales Valle',
-    role: 'Business Analyst @ American Express',
+    role: '(CS Class of 2021) Business Analyst @ American Express',
+    tag: '2 sessions',
     img: '/mentor_pics/valle.png',
-    linkedin: 'https://www.linkedin.com/in/ccorra15/',
   },
   {
     name: 'Luis Gonzalez',
-    role: 'Financial Systems Analyst @ American Express',
+    role: '(CS Class of 2021) Graduate Student, Financial Analyst @ American Express',
+    tag: '1 session',
     img: '/mentor_pics/gonzalez.png',
-    linkedin: 'https://www.linkedin.com/in/lgon070/',
+  },
+  {
+    name: 'Daniel Ramirez',
+    role: '(CS Class of 2024) Software Engineer @ Northrop Grumman',
+    tag: '2 sessions',
+    img: '/mentor_pics/Daniel_Ramirez.png',
+  },
+  {
+    name: 'Gerardo Ibarra',
+    role: '(CS Class of 2023) Former Software Engineer @ Dell Technologies',
+    tag: '1 session',
+    img: '/mentor_pics/gerardo_ibarra.png',
+  },
+  {
+    name: 'Prime P. Hein',
+    role: '(BS EE Class of 2018, MS EE Class of 2020) Street Lighting Engineering Associate III @ City of Los Angeles',
+    tag: '1 session',
+    img: '/mentor_pics/Prime.png',
   },
 ];
 
@@ -87,7 +131,7 @@ const TOPICS = [
 const HEADS_UP = [
   'ACM membership is required to apply for the program. If you are not a member, you will not be allowed in.',
   'This is a semester-long program.',
-  'Sessions are every Thursday 4:30pm–5:50pm and Saturday 9:00am–10:20am.',
+  'Sessions are every Saturday 10:00am–11:20am and Thursday 3:00pm–4:20pm.',
 ];
 
 export default function MentorshipsPage() {
@@ -115,6 +159,22 @@ export default function MentorshipsPage() {
             (Freshmen, Sophomores, Juniors and Seniors).
           </p>
         </div>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Weekly Schedule</h2>
+          <p className={styles.sectionBlurb}>
+            Sessions run twice a week — join whichever time fits your schedule.
+          </p>
+          <div className={styles.scheduleGrid}>
+            {SCHEDULE.map((slot) => (
+              <div key={slot.day} className={styles.scheduleCard}>
+                <div className={styles.scheduleCardDay}>{slot.day}</div>
+                <div className={styles.scheduleCardTime}>{slot.time}</div>
+                <div className={styles.scheduleCardMentors}>with {slot.mentors}</div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <section className={styles.section}>
           <div className={styles.introRow}>
@@ -165,7 +225,7 @@ export default function MentorshipsPage() {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Technical Interviewer</h2>
+          <h2 className={styles.sectionTitle}>Technical Interviewers</h2>
           <MentorGrid mentors={TECHNICAL_INTERVIEWERS} />
         </section>
 
@@ -186,19 +246,13 @@ export default function MentorshipsPage() {
 function MentorGrid({ mentors }) {
   return (
     <div className={styles.mentorGrid}>
-      {mentors.map(({ name, role, img, linkedin }) => (
-        <a
-          key={name}
-          href={linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.mentorCard}
-        >
+      {mentors.map(({ name, role, tag, img }) => (
+        <div key={name} className={styles.mentorCard}>
           <Image src={img} alt={name} width={130} height={130} className={styles.mentorImg} />
           <h3 className={styles.mentorName}>{name}</h3>
           <p className={styles.mentorRole}>{role}</p>
-          <span className={styles.mentorLink}>LinkedIn →</span>
-        </a>
+          {tag && <span className={styles.mentorTag}>{tag}</span>}
+        </div>
       ))}
     </div>
   );

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { getProjectEvents } from '@/lib/events';
 import styles from './page.module.css';
 
@@ -22,6 +21,29 @@ const PAST_PROJECTS = [
     alt: 'Fall 2023 Beginners Workshop',
     imgUrl:
       'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/Fall%202023%2FBeginners%20Worksho%20Flyer%20F23.png?alt=media&token=7d8a2a26-249d-4144-818d-0cf9338e553d',
+  },
+];
+
+const PROJECT_GALLERY = [
+  {
+    alt: 'ACM project workshop in session',
+    imgUrl:
+      'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Fproject1.jpg?alt=media&token=226f52d0-5105-47c4-8469-9bbc16441682',
+  },
+  {
+    alt: 'ACM project workshop in session',
+    imgUrl:
+      'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Fproject2.jpg?alt=media&token=f8fdb602-cef4-4060-8b52-6ee23c13e71d',
+  },
+  {
+    alt: 'ACM project workshop in session',
+    imgUrl:
+      'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Fproject3.jpg?alt=media&token=becb5aeb-daad-4a0b-9b55-ad8c717d57b5',
+  },
+  {
+    alt: 'ACM project workshop in session',
+    imgUrl:
+      'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Fproject4.jpg?alt=media&token=0c5ba36d-080a-4f96-b934-4eee1f4f5850',
   },
 ];
 
@@ -122,6 +144,21 @@ export default async function ProjectsPage() {
                   <img src={project.imgUrl} alt={project.alt} />
                 </div>
                 <div className={styles.projectLabel}>{project.alt}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Moments from our workshops</h2>
+          <p className={styles.sectionBlurb}>
+            Members building, debugging, and shipping alongside our project leaders.
+          </p>
+          <div className={styles.galleryGrid}>
+            {PROJECT_GALLERY.map((photo) => (
+              <div key={photo.imgUrl} className={styles.galleryItem}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={photo.imgUrl} alt={photo.alt} />
               </div>
             ))}
           </div>

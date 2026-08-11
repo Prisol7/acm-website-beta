@@ -121,6 +121,39 @@
   color: var(--accent);
 }
 
+/* ── Schedule cards ── */
+.scheduleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.scheduleCard {
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  padding: 1.5rem 1.75rem;
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+.scheduleCardDay {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--foreground);
+}
+
+.scheduleCardTime {
+  margin-top: 0.35rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.scheduleCardMentors {
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
 /* ── Mentor grid ── */
 .mentorGrid {
   display: grid;
@@ -170,11 +203,14 @@
   line-height: 1.5;
 }
 
-.mentorLink {
+.mentorTag {
   margin-top: 0.35rem;
-  font-size: 0.85rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 /* ── Responsive ── */

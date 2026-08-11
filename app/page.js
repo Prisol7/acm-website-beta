@@ -23,27 +23,27 @@ export const dynamic = 'force-dynamic';
 const CARDS = [
   {
     title: 'Projects',
-    desc: 'semester long workshop to enhance your coding skills through a hands on project and expert guidance from our ACM leaders.',
+    desc: 'Semester long workshop to enhance your coding skills through a hands on project and expert guidance from our ACM leaders.',
     image: 'projects.png',
   },
   {
-    title: 'Project Development',
+    title: 'Professional Development',
     desc: 'Our Professional Development Workshops are designed to equip you with essential skills for career growth, networking, and personal advancement in the tech industry.',
     image: 'prodev.png',
   },
   {
-    title: 'Hackathons',
-    desc: 'Build real projects in fast paced team environments, tackle ambitious challenges, and ship something in 24–48 hours.',
-    image: 'hackathon.png',
+    title: 'Mentorship',
+    desc: 'Get paired with ACM alumni working across the industry for resume reviews, mock interviews, and real career guidance.',
+    image: 'mentorship.png',
   },
   {
-    title: 'Movie & Game Nights',
+    title: 'Social Events',
     desc: 'Unwind with the community through casual socials, gaming sessions, and movie nights designed to bring everyone together.',
     image: 'game.png',
   },
   {
     title: 'Collaboration',
-    desc: 'WWork and volunteer with other clubs on campus to build a more connected and collaborative community.',
+    desc: 'Work and volunteer with other clubs on campus to build a more connected and collaborative community.',
     image: 'collaboration.png',
   },
   {
