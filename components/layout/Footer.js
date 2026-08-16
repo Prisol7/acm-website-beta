@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -7,6 +8,9 @@ export default function Footer() {
       <p className={styles.copy}>
         &copy; Association of Computing Machinery &mdash; California State University, Los Angeles.
       </p>
+      <Link href="/terms" className={styles.link}>
+        Terms of Service
+      </Link>
     </footer>
   );
 }

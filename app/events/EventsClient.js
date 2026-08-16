@@ -54,6 +54,7 @@ export default function EventsClient({ upcomingEvent, semesterEvents, pastEvents
         {/* ── Semester Events ── */}
         <section>
           <h2 className={styles.sectionHeading}>Semester Events</h2>
+          <p className={styles.sectionNote}>Flyers are subject to change.</p>
           <div className={styles.postersGrid}>
             {semesterEvents.map((event) => (
               <div

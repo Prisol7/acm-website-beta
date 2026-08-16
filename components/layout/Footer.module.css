@@ -28,3 +28,15 @@
   opacity: 0.45;
   margin: 0;
 }
+
+.link {
+  font-size: 0.8rem;
+  color: var(--foreground);
+  opacity: 0.45;
+  text-decoration: none;
+}
+
+.link:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}

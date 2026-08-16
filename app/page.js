@@ -5,15 +5,14 @@ import Carousel from '../components/layout/Carousel';
 import JoinUs from '../components/layout/Join_us';
 import Contact from '../components/layout/Contact';
 import { getCarouselImages } from '../lib/gallery';
-import { getUpcomingEvent, getProjectEvents } from '../lib/events';
+import { getUpcomingEvent, getProjectEvents, getMentorshipFlyer } from '../lib/events';
 
 const FALLBACK_IMAGES = ["/images/group.jpg"];
 
-const MENTORSHIP_FLYER_URL =
-  'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/Fall%202026%2Fmentorship.png?alt=media&token=6f9913c6-4c71-4b3c-a930-730e9cf07a31';
-
 const INTEREST_FORM_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSdE8qdvwrX6eIQGylEWVFalwkasWyc9nOJR2Jp_KsiZCKbijA/viewform?pli=1';
+
+const MENTORSHIP_FORM_URL = 'https://forms.gle/6ggg5hLgT6zEnf1ZA';
 
 // Carousel pulls live from Firebase Storage + Firestore, so this must render
 // per-request rather than be cached at build time.
@@ -65,10 +64,11 @@ const VIDEOS = [
 ];
 
 export default async function Home() {
-  const [carouselImages, upcomingEvent, projectEvents] = await Promise.all([
+  const [carouselImages, upcomingEvent, projectEvents, mentorshipFlyer] = await Promise.all([
     getCarouselImages(),
     getUpcomingEvent(),
     getProjectEvents(),
+    getMentorshipFlyer(),
   ]);
   const images = carouselImages.length > 0 ? carouselImages : FALLBACK_IMAGES;
   const featuredSemesterEvents = projectEvents.slice(0, 2);
@@ -143,14 +143,16 @@ export default async function Home() {
 
         {/* Mentorship program */}
         <section className='mentorship-section'>
-          <div className='mentorship-flyer'>
-            <Image
-              src={MENTORSHIP_FLYER_URL}
-              alt='Mentorship program flyer'
-              width={860}
-              height={1080}
-            />
-          </div>
+          {mentorshipFlyer && (
+            <div className='mentorship-flyer'>
+              <Image
+                src={mentorshipFlyer.imgUrl}
+                alt={mentorshipFlyer.altText || 'Mentorship program flyer'}
+                width={860}
+                height={1080}
+              />
+            </div>
+          )}
           <div className='mentorship-text'>
             <h2>Mentorship Program</h2>
             <p>
@@ -161,6 +163,18 @@ export default async function Home() {
             <Link href='/mentorships' className='mentorship-cta'>
               Learn more about mentorship →
             </Link>
+          </div>
+        </section>
+
+        <section className='resources-section'>
+          <div className='resources-card'>
+            <div className='resources-card-text'>
+              <h3>Want in on Mentorship?</h3>
+              <p>Fill out our mentorship sign up form and we&apos;ll reach out with next steps.</p>
+            </div>
+            <a href={MENTORSHIP_FORM_URL} target='_blank' rel='noopener noreferrer' className='resources-cta accent-blue'>
+              Fill out the form →
+            </a>
           </div>
         </section>
 

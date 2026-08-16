@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import styles from './page.module.css';
+import { getMentorshipFlyer } from '@/lib/events';
 
-const FLYER_URL =
-  'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/Fall%202026%2Fmentorship.png?alt=media&token=6f9913c6-4c71-4b3c-a930-730e9cf07a31';
 const CLASSROOM_IMAGE_URL =
   'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Fclassroom-background.jpg?alt=media&token=9d645135-e7aa-47a6-838e-1ab5e6402421';
+const MENTORSHIP_FORM_URL = 'https://forms.gle/6ggg5hLgT6zEnf1ZA';
 
 const SCHEDULE = [
   {
@@ -23,25 +23,21 @@ const LEAD_MENTORS = [
   {
     name: 'David Tang',
     role: '(CS Class of 2021) Software Engineer @ Raytheon',
-    tag: 'Every Saturday',
     img: '/mentor_pics/tang.png',
   },
   {
     name: 'Virginia Gonzalez',
     role: '(CS Class of 2024) Software Engineer @ Northrop Grumman',
-    tag: 'Every Saturday',
     img: '/mentor_pics/virginia.png',
   },
   {
     name: 'Srivats Venkataraman',
     role: '(CS Class of 2022) Jr. Guidewire Developer @ Farmers Insurance',
-    tag: 'Every Thursday',
     img: '/mentor_pics/venkataraman.png',
   },
   {
     name: 'Wilson Thomas',
     role: '(CS Class of 2019) Business Analyst @ Travis County',
-    tag: 'Every Thursday • Finances',
     img: '/mentor_pics/wilson.png',
   },
 ];
@@ -70,12 +66,11 @@ const TECHNICAL_INTERVIEWERS = [
     role: '(CS Class of 2023) Scientist @ Naval Information Warfare Center Pacific (NIWC PAC)',
     img: '/mentor_pics/flores.png',
   },
-  // TODO: uncomment once we have his photo
-  // {
-  //   name: 'Allen Marques',
-  //   role: '(CS Class of 2022) Systems Modeling & Simulation Engineer @ Northrop Grumman',
-  //   img: '/mentor_pics/allen.png',
-  // },
+  {
+    name: 'Allen Marques',
+    role: '(CS Class of 2022) Systems Modeling & Simulation Engineer @ Northrop Grumman',
+    img: '/mentor_pics/allen.jpeg',
+  },
 ];
 
 const MENTORSHIP_CHAIR = [
@@ -90,31 +85,26 @@ const GUEST_SPEAKERS = [
   {
     name: 'Cristian Corrales Valle',
     role: '(CS Class of 2021) Business Analyst @ American Express',
-    tag: '2 sessions',
     img: '/mentor_pics/valle.png',
   },
   {
     name: 'Luis Gonzalez',
     role: '(CS Class of 2021) Graduate Student, Financial Analyst @ American Express',
-    tag: '1 session',
     img: '/mentor_pics/gonzalez.png',
   },
   {
     name: 'Daniel Ramirez',
     role: '(CS Class of 2024) Software Engineer @ Northrop Grumman',
-    tag: '2 sessions',
     img: '/mentor_pics/Daniel_Ramirez.png',
   },
   {
     name: 'Gerardo Ibarra',
     role: '(CS Class of 2023) Former Software Engineer @ Dell Technologies',
-    tag: '1 session',
     img: '/mentor_pics/gerardo_ibarra.png',
   },
   {
     name: 'Prime P. Hein',
     role: '(BS EE Class of 2018, MS EE Class of 2020) Street Lighting Engineering Associate III @ City of Los Angeles',
-    tag: '1 session',
     img: '/mentor_pics/Prime.png',
   },
 ];
@@ -134,13 +124,22 @@ const HEADS_UP = [
   'Sessions are every Saturday 10:00am–11:20am and Thursday 3:00pm–4:20pm.',
 ];
 
-export default function MentorshipsPage() {
+export default async function MentorshipsPage() {
+  const mentorshipFlyer = await getMentorshipFlyer();
+
   return (
     <main>
       <div className="Content flex flex-col" style={{ paddingTop: '3rem' }}>
-        <div className={styles.flyer}>
-          <Image src={FLYER_URL} alt="Mentorship program flyer" width={860} height={1080} />
-        </div>
+        {mentorshipFlyer && (
+          <div className={styles.flyer}>
+            <Image
+              src={mentorshipFlyer.imgUrl}
+              alt={mentorshipFlyer.altText || 'Mentorship program flyer'}
+              width={860}
+              height={1080}
+            />
+          </div>
+        )}
 
         <div className={styles.intro}>
           <h1 className={styles.heading}>Mentorship Program</h1>
@@ -159,6 +158,18 @@ export default function MentorshipsPage() {
             (Freshmen, Sophomores, Juniors and Seniors).
           </p>
         </div>
+
+        <section className="resources-section" style={{ padding: 0 }}>
+          <div className="resources-card">
+            <div className="resources-card-text">
+              <h3>Ready to sign up?</h3>
+              <p>Fill out our mentorship sign up form to let us know you want in on the program.</p>
+            </div>
+            <a href={MENTORSHIP_FORM_URL} target="_blank" rel="noopener noreferrer" className="resources-cta accent-blue">
+              Fill out the form →
+            </a>
+          </div>
+        </section>
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Weekly Schedule</h2>
