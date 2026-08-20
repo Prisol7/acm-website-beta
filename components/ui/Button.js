@@ -1,12 +1,14 @@
 "use client";
 
+// Colors pull from the site-wide --button-color token (see globals.css)
+// so every button variant stays in sync with a single value.
 const variants = {
   primary:
-    "bg-[var(--acm-blue)] text-white hover:opacity-90",
+    "bg-[var(--button-color)] text-white hover:opacity-90",
   secondary:
-    "bg-[var(--acm-purple)] text-white hover:opacity-90",
+    "bg-[var(--button-color)] text-white hover:opacity-90",
   outline:
-    "border border-[var(--acm-blue)] text-[var(--acm-blue)] hover:bg-[var(--acm-blue)] hover:text-white",
+    "border border-[var(--button-color)] text-[var(--button-color)] hover:bg-[var(--button-color)] hover:text-white",
 };
 
 export default function Button({

@@ -14,6 +14,21 @@
   --surface: #ffffff;
 
   --border-subtle: rgba(0, 0, 0, 0.05);
+
+  /* Single source of truth for every button/CTA background color on the
+     site. Change this one value to restyle all buttons at once. */
+  --button-color: #273c75;
+
+  /* Card hover border colors on the Board and Mentorship pages — each card
+     cycles through these 8 in order. Edit these 8 values to change the set. */
+  --hover-color-1: #00b4d8;
+  --hover-color-2: #7209b7;
+  --hover-color-3: #f72585;
+  --hover-color-4: #f77f00;
+  --hover-color-5: #06d6a0;
+  --hover-color-6: #ffd60a;
+  --hover-color-7: #ef476f;
+  --hover-color-8: #3a86ff;
 }
 
 /* System dark mode fallback */
@@ -387,7 +402,7 @@
   align-items: center;
   padding: 0.85rem 1.75rem;
   border-radius: 0.75rem;
-  background: var(--acm-purple);
+  background: var(--button-color);
   color: #fff;
   font-size: 0.95rem;
   font-weight: 700;
@@ -488,7 +503,7 @@
   align-items: center;
   padding: 0.85rem 2rem;
   border-radius: 0.75rem;
-  background: var(--acm-blue);
+  background: var(--button-color);
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -554,7 +569,7 @@
   align-items: center;
   padding: 0.85rem 1.75rem;
   border-radius: 0.75rem;
-  background: var(--acm-purple);
+  background: var(--button-color);
   color: #fff;
   font-size: 0.95rem;
   font-weight: 700;
@@ -569,7 +584,7 @@
 }
 
 .resources-cta.accent-blue {
-  background: var(--acm-blue);
+  background: var(--button-color);
 }
 
 @media (max-width: 700px) {

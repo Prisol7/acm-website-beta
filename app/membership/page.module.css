@@ -270,12 +270,12 @@
   display: inline-block;
   padding: 1rem 2.5rem;
   border-radius: 0.75rem;
-  background: var(--accent);
+  background: var(--button-color);
   color: #fff;
   font-size: 1.1rem;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--button-color) 35%, transparent);
   transition: opacity 0.2s, transform 0.2s;
 }
 

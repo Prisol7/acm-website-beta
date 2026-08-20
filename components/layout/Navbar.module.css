@@ -92,7 +92,7 @@
   border-radius: 0.5rem;
   font-weight: 600;
   color: #fff;
-  background: #001220;
+  background: var(--button-color);
   transition: opacity 0.2s;
   text-decoration: none;
   border: none;

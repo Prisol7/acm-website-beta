@@ -35,13 +35,41 @@ export default async function BoardPage({ searchParams }) {
       members: leaders.webTeam,
     },
     {
+      id: 'coordinating',
+      label: 'Coordinating',
+      title: 'Coordinating Officers',
+      blurb: 'Officers who keep events, logistics, and communication running smoothly.',
+      members: leaders.coordinating,
+    },
+    {
+      id: 'administrative',
+      label: 'Administrative',
+      title: 'Administrative Officers',
+      blurb: 'Officers who handle the chapter’s day-to-day administration.',
+      members: leaders.administrative,
+    },
+    {
+      id: 'executive-officers',
+      label: 'Executive',
+      title: 'Executive Officers',
+      blurb: 'Officers supporting the exec board across the chapter’s operations.',
+      members: leaders.executiveOfficers,
+    },
+    {
+      id: 'finance',
+      label: 'Finance',
+      title: 'Finance Officers',
+      blurb: 'Officers who manage the chapter’s budget and finances.',
+      members: leaders.finance,
+    },
+    {
       id: 'advisors',
       label: 'Advisors',
       title: 'Faculty Advisors',
       blurb: 'Faculty who mentor the chapter and connect us with the department.',
       members: leaders.advisors,
     },
-  ];
+  ].filter((section) => section.members.length > 0);
 
   return (
     <BoardClient

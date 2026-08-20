@@ -178,8 +178,17 @@
 .mentorCard:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
-  border-color: var(--accent);
 }
+
+/* Cycle through the 8 hover colors card by card. */
+.mentorGrid > .mentorCard:nth-child(8n + 1):hover { border-color: var(--hover-color-1); }
+.mentorGrid > .mentorCard:nth-child(8n + 2):hover { border-color: var(--hover-color-2); }
+.mentorGrid > .mentorCard:nth-child(8n + 3):hover { border-color: var(--hover-color-3); }
+.mentorGrid > .mentorCard:nth-child(8n + 4):hover { border-color: var(--hover-color-4); }
+.mentorGrid > .mentorCard:nth-child(8n + 5):hover { border-color: var(--hover-color-5); }
+.mentorGrid > .mentorCard:nth-child(8n + 6):hover { border-color: var(--hover-color-6); }
+.mentorGrid > .mentorCard:nth-child(8n + 7):hover { border-color: var(--hover-color-7); }
+.mentorGrid > .mentorCard:nth-child(8n + 8):hover { border-color: var(--hover-color-8); }
 
 .mentorImg {
   width: 130px;
