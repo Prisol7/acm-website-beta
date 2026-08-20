@@ -85,9 +85,13 @@ export default function MembershipForm() {
     <div className={styles.formSection}>
       <div className={styles.formCard}>
         <h2 className={styles.formTitle}>Complete your membership profile</h2>
+        <p className={styles.formTopNote}>
+          Please note you must fill out the form for membership to be valid.
+        </p>
         <p className={styles.formSubtitle}>
           Tell us a bit more about yourself so we can keep your membership on file.
         </p>
+
 
         <form className={styles.form} onSubmit={handleSubmit}>
 

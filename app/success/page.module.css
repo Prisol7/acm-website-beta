@@ -445,6 +445,16 @@
   margin: 2rem 0;
 }
 
+.formTopNote {
+  padding: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--warm-accent);
+
+}
+
 @media (max-width: 640px) {
   .formRow {
     grid-template-columns: 1fr;
