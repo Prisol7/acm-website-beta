@@ -10,7 +10,7 @@ const SCHEDULE = [
   {
     day: 'Saturdays',
     time: '10:00 AM – 11:20 AM',
-    mentors: 'David Tang & Virginia Gonzalez',
+    mentors: 'David Tang',
   },
   {
     day: 'Thursdays',
@@ -26,11 +26,6 @@ const LEAD_MENTORS = [
     img: '/mentor_pics/tang.png',
   },
   {
-    name: 'Virginia Gonzalez',
-    role: '(CS Class of 2024) Software Engineer @ Northrop Grumman',
-    img: '/mentor_pics/virginia.png',
-  },
-  {
     name: 'Srivats Venkataraman',
     role: '(CS Class of 2022) Jr. Guidewire Developer @ Farmers Insurance',
     img: '/mentor_pics/venkataraman.png',
@@ -43,11 +38,6 @@ const LEAD_MENTORS = [
 ];
 
 const ONE_ON_ONE_MENTORS = [
-  {
-    name: 'Virginia Gonzalez',
-    role: '(CS Class of 2024) Software Engineer @ Northrop Grumman',
-    img: '/mentor_pics/virginia.png',
-  },
   {
     name: 'Geovanny Huerta',
     role: '(CS Class of 2022) Software Engineer @ Northrop Grumman',

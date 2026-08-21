@@ -14,7 +14,7 @@ const NEXT_STEPS = [
   },
   {
     title: 'Come say hi',
-    text: "You are part of our computer netowkr now. We'd love to meet you in person at our next event.",
+    text: "You are part of our computer network now. We'd love to meet you in person at our next event.",
   },
 ];
 

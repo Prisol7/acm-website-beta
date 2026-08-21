@@ -237,6 +237,19 @@ const CATEGORIES = [
     ],
   },
   {
+    icon: '🛡️',
+    title: 'Insurance & Membership Plans',
+    blurb: 'Paid plans available to students — not free, but worth knowing about.',
+    groups: [
+      {
+        items: [
+          { text: 'MetLife Legal Insurance Plan (Paid plan)', href: 'https://www.metlife.com/insurance/legal-plans/offer523/?BTID=FedLegalFunnel_Legal_insurance-legal-plans-offer523_IndividualEnroll' },
+          { text: 'AAA Membership — Benefit Chart (Paid plan)', href: 'https://www.ace.aaa.com/membership/benefit-chart.html' },
+        ],
+      },
+    ],
+  },
+  {
     icon: '💎',
     title: "Hidden Gems Many Students Don't Use",
     groups: [

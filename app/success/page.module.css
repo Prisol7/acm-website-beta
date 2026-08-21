@@ -397,6 +397,13 @@
   padding-top: 0.4rem;
 }
 
+.checkboxGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  padding-top: 0.4rem;
+}
+
 .radioLabel {
   display: flex;
   align-items: center;

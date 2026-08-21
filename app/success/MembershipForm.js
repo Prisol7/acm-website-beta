@@ -16,6 +16,15 @@ const HEAR_ABOUT_OPTIONS = [
   'General meeting',
   'Other',
 ];
+const CAREER_EXPECTATION_OPTIONS = [
+  { value: 'career-guide', label: 'Career guidance' },
+  { value: 'networking-opportunity', label: 'Networking opportunities' },
+  { value: 'leadership-dev', label: 'Leadership development' },
+  { value: 'project-experience', label: 'Project experience' },
+  { value: 'internship-opportunity', label: 'Internship opportunities' },
+  { value: 'scholarship-opportunity', label: 'Scholarship opportunities' },
+  { value: 'mentorship', label: 'Mentorship' },
+];
 
 const EMPTY_FORM = {
   email: '',
@@ -33,7 +42,7 @@ const EMPTY_FORM = {
   expectedGraduation: '',
   howHeard: '',
   howHeardOther: '',
-  careerExpectation: '',
+  careerExpectation: [],
   projectRecommendations: '',
 };
 
@@ -44,6 +53,15 @@ export default function MembershipForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const toggleCareerExpectation = (value) => {
+    setForm((prev) => ({
+      ...prev,
+      careerExpectation: prev.careerExpectation.includes(value)
+        ? prev.careerExpectation.filter((v) => v !== value)
+        : [...prev.careerExpectation, value],
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -211,11 +229,11 @@ export default function MembershipForm() {
                 />
               )}
             </div>
-            <TextAreaField
-              label="What are you hoping to get out of ACM? (career expectations)"
-              name="careerExpectation"
-              value={form.careerExpectation}
-              onChange={handleChange}
+            <CheckboxGroupField
+              label="What are you hoping to get out of ACM? (select all that apply)"
+              options={CAREER_EXPECTATION_OPTIONS}
+              selected={form.careerExpectation}
+              onToggle={toggleCareerExpectation}
             />
             <TextAreaField
               label="Any project ideas or recommendations you'd like to see us cover?"
@@ -279,6 +297,26 @@ function TextAreaField({ label, name, value, onChange, required }) {
         rows={3}
       />
     </label>
+  );
+}
+
+function CheckboxGroupField({ label, options, selected, onToggle }) {
+  return (
+    <div className={styles.field}>
+      <span className={styles.fieldLabel}>{label}</span>
+      <div className={styles.checkboxGrid}>
+        {options.map(({ value, label: optionLabel }) => (
+          <label key={value} className={styles.radioLabel}>
+            <input
+              type="checkbox"
+              checked={selected.includes(value)}
+              onChange={() => onToggle(value)}
+            />
+            {optionLabel}
+          </label>
+        ))}
+      </div>
+    </div>
   );
 }
 
