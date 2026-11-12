@@ -3,6 +3,10 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import { getMentorshipFlyer } from '@/lib/events';
 
+// The mentorship flyer comes from Firestore, so this page must render
+// per-request rather than be cached at build time.
+export const dynamic = 'force-dynamic';
+
 const PROJECTS_FLYER_URL =
   'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/Spring%202026%2FProject%20Workshop%20Flyer.png?alt=media&token=6b4c07f7-3c2c-496b-a7db-a4a9a44ecfe5';
 

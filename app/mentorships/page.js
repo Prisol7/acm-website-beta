@@ -2,6 +2,10 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import { getMentorshipFlyer } from '@/lib/events';
 
+// The mentorship flyer comes from Firestore, so this page must render
+// per-request rather than be cached at build time.
+export const dynamic = 'force-dynamic';
+
 const CLASSROOM_IMAGE_URL =
   'https://firebasestorage.googleapis.com/v0/b/acm-calstatela.appspot.com/o/website_Images%2Fclassroom-background.jpg?alt=media&token=9d645135-e7aa-47a6-838e-1ab5e6402421';
 const MENTORSHIP_FORM_URL = 'https://forms.gle/6ggg5hLgT6zEnf1ZA';
@@ -61,6 +65,11 @@ const TECHNICAL_INTERVIEWERS = [
     role: '(CS Class of 2022) Systems Modeling & Simulation Engineer @ Northrop Grumman',
     img: '/mentor_pics/allen.jpeg',
   },
+  {
+    name: 'Nshan Kazaryan',
+    role: 'Software Systems Engineer II @ NASA Jet Propulsion Laboratory',
+    img: '/mentor_pics/Kazaryan.png',
+  },
 ];
 
 const MENTORSHIP_CHAIR = [
@@ -96,6 +105,11 @@ const GUEST_SPEAKERS = [
     name: 'Prime P. Hein',
     role: '(BS EE Class of 2018, MS EE Class of 2020) Street Lighting Engineering Associate III @ City of Los Angeles',
     img: '/mentor_pics/Prime.png',
+  },
+  {
+    name: 'Nshan Kazaryan',
+    role: 'Software Systems Engineer II @ NASA Jet Propulsion Laboratory',
+    img: '/mentor_pics/Kazaryan.png',
   },
 ];
 
@@ -226,7 +240,7 @@ export default async function MentorshipsPage() {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Technical Interviewers</h2>
+          <h2 className={styles.sectionTitle}>Technical/Behavioral Interviewers</h2>
           <MentorGrid mentors={TECHNICAL_INTERVIEWERS} />
         </section>
 
@@ -249,7 +263,13 @@ function MentorGrid({ mentors }) {
     <div className={styles.mentorGrid}>
       {mentors.map(({ name, role, tag, img }) => (
         <div key={name} className={styles.mentorCard}>
-          <Image src={img} alt={name} width={130} height={130} className={styles.mentorImg} />
+          <Image
+            src={img || '/logo-circle.png'}
+            alt={name}
+            width={130}
+            height={130}
+            className={styles.mentorImg}
+          />
           <h3 className={styles.mentorName}>{name}</h3>
           <p className={styles.mentorRole}>{role}</p>
           {tag && <span className={styles.mentorTag}>{tag}</span>}

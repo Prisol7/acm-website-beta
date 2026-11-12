@@ -10,7 +10,7 @@ export const metadata = {
   title: "Cal State LA",
   description: "ACM at Cal State LA — a student chapter of the Association for Computing Machinery bringing together students who share a passion for computing through workshops, hackathons, and community.",
   icons: {
-    icon: "/acmlogo1.png",
+    icon: "/logos/tab_logo.png",
   },
 };
 

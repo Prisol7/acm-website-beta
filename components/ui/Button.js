@@ -1,14 +1,15 @@
 "use client";
 
 // Colors pull from the site-wide --button-color token (see globals.css)
-// so every button variant stays in sync with a single value.
+// so every button variant stays in sync with a single value. Hover motion
+// (lift + shadow) matches the other CTA buttons across the site.
 const variants = {
   primary:
-    "bg-[var(--button-color)] text-white hover:opacity-90",
+    "bg-[var(--button-color)] text-white hover:shadow-lg hover:-translate-y-0.5",
   secondary:
-    "bg-[var(--button-color)] text-white hover:opacity-90",
+    "bg-[var(--button-color)] text-white hover:shadow-lg hover:-translate-y-0.5",
   outline:
-    "border border-[var(--button-color)] text-[var(--button-color)] hover:bg-[var(--button-color)] hover:text-white",
+    "border border-[var(--button-color)] text-[var(--button-color)] hover:bg-[var(--button-color)] hover:text-white hover:-translate-y-0.5",
 };
 
 export default function Button({

@@ -269,6 +269,13 @@
 }
 
 @media (max-width: 640px) {
+  /* Narrow screens would crop the sides off at a fixed height — size the
+     card to the photo's own ratio so the whole board is visible. */
+  .card {
+    height: auto;
+    aspect-ratio: 2093 / 1027;
+  }
+
   .heading {
     font-size: 2rem;
   }

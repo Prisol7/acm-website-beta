@@ -29,6 +29,35 @@
   --hover-color-6: #ffd60a;
   --hover-color-7: #ef476f;
   --hover-color-8: #3a86ff;
+
+  /* The site's one "signature rainbow" — reused for nav-link underlines,
+     card hover accents, and button hover rings so color reads as one
+     consistent motif instead of scattered accents. */
+  --rainbow-gradient: linear-gradient(
+    90deg,
+    var(--acm-blue),
+    var(--acm-purple),
+    var(--acm-pink),
+    #f77f00,
+    var(--acm-blue)
+  );
+
+  /* Same rainbow, lightened — for the nav top border, which (unlike the
+     hover accents above) is always on screen and reads better a shade
+     brighter than the hover-only moments. */
+  --rainbow-gradient-light: linear-gradient(
+    90deg,
+    #48cae4,
+    #9d4edd,
+    #ff5d8f,
+    #ffb703,
+    #48cae4
+  );
+}
+
+@keyframes rainbow-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
 /* System dark mode fallback */
@@ -165,20 +194,45 @@
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 0.75rem;
-  padding: 1.5rem;
+  padding: 1.75rem 1.5rem;
   border-radius: 0.75rem;
   border: 1px solid var(--border-subtle);
   background: var(--background);
-  transition: box-shadow 0.2s;
+  overflow: hidden;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+}
+
+/* Rainbow reveal — hidden at rest, sweeps in on hover. Keeps color reserved
+   for the interactive moment instead of always-on. */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--rainbow-gradient);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.09);
+  transform: translateY(-3px);
+  border-color: transparent;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+  animation: rainbow-shift 3s linear infinite;
 }
 
 .card h3 {
@@ -402,17 +456,23 @@
   align-items: center;
   padding: 0.85rem 1.75rem;
   border-radius: 0.75rem;
+  border: 2px solid transparent;
   background: var(--button-color);
   color: #fff;
   font-size: 0.95rem;
   font-weight: 700;
   text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .mentorship-cta:hover {
-  opacity: 0.9;
   transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.3);
+  background:
+    linear-gradient(var(--button-color), var(--button-color)) padding-box,
+    var(--rainbow-gradient) border-box;
+  background-size: auto, 200% 100%;
+  animation: rainbow-shift 3s linear infinite;
 }
 
 @media (max-width: 850px) {
@@ -472,6 +532,12 @@
   overflow: hidden;
   border: 1px solid var(--border-subtle);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.event-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+  transform: translateY(-3px);
 }
 
 .event-card img {
@@ -503,17 +569,23 @@
   align-items: center;
   padding: 0.85rem 2rem;
   border-radius: 0.75rem;
+  border: 2px solid transparent;
   background: var(--button-color);
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .events-cta:hover {
-  opacity: 0.9;
   transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.3);
+  background:
+    linear-gradient(var(--button-color), var(--button-color)) padding-box,
+    var(--rainbow-gradient) border-box;
+  background-size: auto, 200% 100%;
+  animation: rainbow-shift 3s linear infinite;
 }
 
 @media (max-width: 850px) {
@@ -547,6 +619,12 @@
   border: 1px solid var(--border-subtle);
   background: var(--background);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.resources-card:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
 }
 
 .resources-card-text h3 {
@@ -569,18 +647,24 @@
   align-items: center;
   padding: 0.85rem 1.75rem;
   border-radius: 0.75rem;
+  border: 2px solid transparent;
   background: var(--button-color);
   color: #fff;
   font-size: 0.95rem;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity 0.2s, transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .resources-cta:hover {
-  opacity: 0.9;
   transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.3);
+  background:
+    linear-gradient(var(--button-color), var(--button-color)) padding-box,
+    var(--rainbow-gradient) border-box;
+  background-size: auto, 200% 100%;
+  animation: rainbow-shift 3s linear infinite;
 }
 
 .resources-cta.accent-blue {
