@@ -71,11 +71,11 @@ export default function BoardClient({ sections, years = [], currentBoardId, curr
         {/* ── Hero image ── */}
         <div className={styles.card}>
           <Image
-            src="/images/Fall-2025-Board.jpg"
+            src="/images/fullboard copy.jpg"
             alt="Fall 2025 Board"
-            width={860}
-            height={480}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '100% 30%', display: 'block' }}
+            width={2093}
+            height={1027}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
           />
         </div>
 
@@ -170,7 +170,7 @@ function MemberGrid({ members }) {
             <img src={img} alt={name} className={styles.memberImg} />
           ) : (
             <Image
-              src="/images/basketball-bird.png"
+              src="/logo-circle.png"
               alt={name}
               width={90}
               height={90}

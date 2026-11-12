@@ -33,7 +33,7 @@ const CARDS = [
   {
     title: 'Mentorship',
     desc: 'Get paired with ACM alumni working across the industry for resume reviews, mock interviews, and real career guidance.',
-    image: 'mentorship.png',
+    image: '/logos/teacher.png',
   },
   {
     title: 'Social Events',
@@ -116,7 +116,12 @@ export default async function Home() {
           <div className='cards-grid'>
             {CARDS.map((card) => (
               <div key={card.title} className='card'>
-                <Image src={`/images/${card.image}`} alt={card.title} width={48} height={48} />
+                <Image
+                  src={card.image.startsWith('/') ? card.image : `/images/${card.image}`}
+                  alt={card.title}
+                  width={48}
+                  height={48}
+                />
                 <h3>{card.title}</h3>
                 <p>{card.desc}</p>
               </div>

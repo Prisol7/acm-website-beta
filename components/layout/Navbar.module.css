@@ -44,14 +44,32 @@
 }
 
 .navLinks a {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
   text-decoration: none;
   color: var(--foreground);
   font-weight: 500;
-  transition: color 0.2s;
 }
 
-.navLinks a:hover {
-  color: var(--accent, var(--acm-blue));
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--rainbow-gradient);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.navLinks a:hover::after {
+  transform: scaleX(1);
+  animation: rainbow-shift 3s linear infinite;
 }
 
 /* ── Desktop action area ── */
@@ -61,28 +79,15 @@
   gap: 1rem;
 }
 
-/* ── Gradient border and move it  ── */
+/* ── Gradient border and move it — same rainbow as the card hover accent
+   (see --rainbow-gradient-light in globals.css), just brighter since this
+   bar is always on screen instead of a hover-only moment. ── */
 .nav-gradient-border {
   height: 4px;
   width: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--acm-blue),
-    var(--acm-purple),
-    var(--acm-pink),
-    var(--acm-blue)
-  );
+  background: var(--rainbow-gradient-light);
   background-size: 200% 100%;
-  animation: gradientMove 4s linear infinite;
-}
-
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
+  animation: rainbow-shift 4s linear infinite;
 }
 
 
@@ -93,16 +98,22 @@
   font-weight: 600;
   color: #fff;
   background: var(--button-color);
-  transition: opacity 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
   text-decoration: none;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   white-space: nowrap;
   display: inline-block;
 }
 
 .btn-primary:hover {
-  opacity: 0.85;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.3);
+  background:
+    linear-gradient(var(--button-color), var(--button-color)) padding-box,
+    var(--rainbow-gradient) border-box;
+  background-size: auto, 200% 100%;
+  animation: rainbow-shift 3s linear infinite;
 }
 
 /* ── Theme toggle ── */
